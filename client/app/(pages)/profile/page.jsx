@@ -41,26 +41,32 @@ export default function ProfilePage() {
     if (!user?.id) return;
     try {
       const res = await fetchHighScore({ playerId: user.id });
-      if (res.topGame) {
+      if (res && res.topGame) {
         setHighscore(res.topGame.score);
       }
     } catch (err) {
       console.error("Error fetching high score:", err);
-      setError("Failed to fetch high score");
+      // setError("Failed to fetch high score"); // Suppress error for UI cleanliness
     }
   }, [user?.id]);
 
   const getPastTenGames = useCallback(async () => {
     if (!user?.id) return;
+    const backendURL = process.env.NEXT_PUBLIC_API_KEY;
+    if (!backendURL) {
+      console.warn("NEXT_PUBLIC_API_KEY is missing");
+      return;
+    }
     try {
-      const backendURL = process.env.NEXT_PUBLIC_API_KEY;
       const response = await axios.get(`${backendURL}/api/getpastten`, {
         params: { userId: user.id },
       });
-      setPastGames(response.data.pastTenGames);
+      if (response.data && response.data.pastTenGames) {
+        setPastGames(response.data.pastTenGames);
+      }
     } catch (err) {
       console.error("Error fetching past games:", err);
-      setError("Failed to fetch past games");
+      // setError("Failed to fetch past games");
     }
   }, [user?.id]);
 
@@ -112,8 +118,8 @@ export default function ProfilePage() {
                   <tr
                     key={game.id}
                     className={`border-b ${index % 2 === 0
-                        ? "bg-gray-50 dark:bg-gray-700"
-                        : "bg-gray-200 dark:bg-gray-600"
+                      ? "bg-gray-50 dark:bg-gray-700"
+                      : "bg-gray-200 dark:bg-gray-600"
                       } hover:bg-gray-100 dark:hover:bg-gray-500 transition-all duration-300`}
                   >
                     <td className="px-6 py-4 text-gray-800 dark:text-gray-200">

@@ -40,10 +40,10 @@ export default function Navigation() {
 
   const navItems = [
     { label: "Home", icon: LucideHome, onClick: () => router.push("/") },
-    { label: "Play The Game", icon: Joystick, onClick: () => router.push("/pages/game") },
-    { label: "Profile", icon: CircleUser, onClick: () => router.push("/pages/profile") },
-    { label: "Leaderboard", icon: Trophy, onClick: () => router.push("/pages/leaderboard") },
-    { label: "Contributors", icon: GitPullRequestArrow, onClick: () => router.push("/pages/contributors") },
+    { label: "Play The Game", icon: Joystick, onClick: () => router.push("/game") },
+    { label: "Profile", icon: CircleUser, onClick: () => router.push("/profile") },
+    { label: "Leaderboard", icon: Trophy, onClick: () => router.push("/leaderboard") },
+    { label: "Contributors", icon: GitPullRequestArrow, onClick: () => router.push("/contributors") },
   ];
 
   return (
