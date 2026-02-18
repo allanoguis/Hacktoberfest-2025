@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import { useUser } from "@clerk/nextjs";
-import { fetchHighScore } from "@/api/getHighScoreAPI/route";
+import { fetchHighScore } from "@/services/getHighScoreAPI/route";
 import axios from "axios";
 import Image from "next/image";
 
@@ -111,11 +111,10 @@ export default function ProfilePage() {
                 {pastGames.map((game, index) => (
                   <tr
                     key={game.id}
-                    className={`border-b ${
-                      index % 2 === 0
+                    className={`border-b ${index % 2 === 0
                         ? "bg-gray-50 dark:bg-gray-700"
                         : "bg-gray-200 dark:bg-gray-600"
-                    } hover:bg-gray-100 dark:hover:bg-gray-500 transition-all duration-300`}
+                      } hover:bg-gray-100 dark:hover:bg-gray-500 transition-all duration-300`}
                   >
                     <td className="px-6 py-4 text-gray-800 dark:text-gray-200">
                       {new Date(game.time).toLocaleString()}
