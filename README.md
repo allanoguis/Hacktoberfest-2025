@@ -1,4 +1,4 @@
-![GitHub commit activity](https://img.shields.io/github/commit-activity/t/allanoguis/hacktoberfest-2024) ![GitHub contributors](https://img.shields.io/github/contributors/allanoguis/hacktoberfest-2024) ![GitHub repo size](https://img.shields.io/github/repo-size/allanoguis/hacktoberfest-2024) ![GitHub Repo stars](https://img.shields.io/github/stars/allanoguis/hacktoberfest-2024) ![GitHub forks](https://img.shields.io/github/forks/allanoguis/hacktoberfest-2024)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/allanoguis/hacktoberfest-2025) ![GitHub contributors](https://img.shields.io/github/contributors/allanoguis/hacktoberfest-2025) ![GitHub repo size](https://img.shields.io/github/repo-size/allanoguis/hacktoberfest-2025) ![GitHub Repo stars](https://img.shields.io/github/stars/allanoguis/hacktoberfest-2025) ![GitHub forks](https://img.shields.io/github/forks/allanoguis/hacktoberfest-2025)
 
 ![light](https://github.com/user-attachments/assets/34cdd661-bc70-48fe-8ca2-d7d44c0e74e3)
 
@@ -14,7 +14,7 @@
       <th>Event Description</th>
    </tr>
     <tr>
-      <td><img src="Hack.jpg" width="200" height="auto" loading="lazy" alt="Hacktoberfest 2024"/></td>
+      <td><img src="Hack.jpg" width="200" height="auto" loading="lazy" alt="Hacktoberfest 2025"/></td>
       <td>Hacktoberfest 2025</td>
       <td>Hacktoberfest is a month-long celebration of open source software run by DigitalOcean, GitHub, and Twilio. It encourages contributions to open source projects and promotes a global community of developers.</td>
    </tr>
@@ -26,7 +26,7 @@
 # Table of Contents
 
 1. [Featured In](#featured-in)
-2. [Hacktoberfest 2024](#hacktoberfest-2024)
+2. [Hacktoberfest 2025](#hacktoberfest-2025)
 3. [Event Date](#-event-date)
 4. [How to Participate?](#-how-to-participate)
 5. [Project: Gojirun](#project-gojirun)
@@ -38,11 +38,11 @@
 11. [License](#license)
 12. [Acknowledgments](#acknowledgments)
 
-# Hacktoberfest 2024
+# Hacktoberfest 2025
 
 Hacktoberfest is all about celebrating open source, giving back to the community, and growing your coding skills.
 
-## 📅 Event Date: October 1st - October 31st, 2024
+## 📅 Event Date: October 1st - October 31st, 2025
 
 ## 🔥 How to Participate?
 
@@ -55,7 +55,7 @@ Start Contributing: Feel free to contribute any quality code as long as it works
 
 ## Project: Gojirun
 
-Gojirun is a 2D platformer game inspired by the classic T-Rex run from Chrome. The game is made with SVG assets built in React JS. This project is dedicated to Hacktoberfest 2024 and all its contributors.
+Gojirun is a 2D platformer game inspired by the classic T-Rex run from Chrome. The game is made with SVG assets built in React JS. This project is dedicated to Hacktoberfest 2025 and all its contributors.
 
 ---
 
@@ -70,7 +70,7 @@ Read more:
 
 An easy way to avoid conflicts is to add an 'upstream' for your git repo, as other PRs may be merged while you're working on your branch/fork.
 
-git remote add upstream <https://github.com/allanoguis/hacktoberfest-2024>
+git remote add upstream <https://github.com/allanoguis/hacktoberfest-2025>
 You can verify that the new remote has been added by typing:
 
 git remote -v
@@ -87,8 +87,8 @@ For more information on syncing forks, read this article from GitHub.
 
 A heartfelt thank you to the following individuals for their valuable contributions to this project. Your support and dedication are greatly appreciated:
 
-<a href="https://github.com/allanoguis/Hacktoberfest-2024/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=allanoguis/Hacktoberfest-2024" />
+<a href="https://github.com/allanoguis/Hacktoberfest-2025/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=allanoguis/Hacktoberfest-2025" />
 </a>
 
 <br>
@@ -96,7 +96,7 @@ A heartfelt thank you to the following individuals for their valuable contributi
 ## Forkers
 <div align='center'>
 
-[![Forkers repo roster for @allanoguis/Hacktoberfest-2024](https://reporoster.com/forks/allanoguis/Hacktoberfest-2024)](https://github.com/allanoguis/Hacktoberfest-2024/network/members)
+[![Forkers repo roster for @allanoguis/Hacktoberfest-2025](https://reporoster.com/forks/allanoguis/Hacktoberfest-2025)](https://github.com/allanoguis/Hacktoberfest-2025/network/members)
 
 </div>
 
