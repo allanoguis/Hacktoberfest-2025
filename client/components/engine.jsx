@@ -6,7 +6,7 @@ import obstacleImage from "@/app/images/tank.svg";
 import cloud1Image from "@/app/images/cloud1.png";
 import cloud2Image from "@/app/images/cloud2.png";
 import cloud3Image from "@/app/images/cloud3.png";
-import { saveGame } from "../api/saveGameAPI/route";
+import { saveGame } from "../services/saveGameAPI/route";
 import { useUser } from "@clerk/nextjs";
 
 // Constants
