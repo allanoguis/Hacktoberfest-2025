@@ -298,17 +298,24 @@ export default function Engine() {
   }, [gameStarted, gameOver, saveGameFromFrontend]);
 
   const handleStartGame = () => {
-    isSavingRef.current = false;
-    scoreRef.current = 0;
-    obstacleRef.current = GAME_WIDTH;
-    cloud1Ref.current = GAME_WIDTH;
-    cloud2Ref.current = GAME_WIDTH;
-    cloud3Ref.current = GAME_WIDTH;
-    groundRef.current = GROUND;
+    // If resetting from Game Over, just clean up and show the Start screen
+    if (gameOver) {
+      isSavingRef.current = false;
+      scoreRef.current = 0;
+      obstacleRef.current = GAME_WIDTH;
+      cloud1Ref.current = GAME_WIDTH;
+      cloud2Ref.current = GAME_WIDTH;
+      cloud3Ref.current = GAME_WIDTH;
+      groundRef.current = GROUND;
 
-    setScore(0);
-    setGround(GROUND);
-    setGameOver(false);
+      setScore(0);
+      setGround(GROUND);
+      setGameOver(false);
+      setGameStarted(false);
+      return;
+    }
+
+    // If starting from the Idle screen, just set started to true
     setGameStarted(true);
   };
 
