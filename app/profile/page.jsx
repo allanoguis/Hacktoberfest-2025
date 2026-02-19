@@ -1,7 +1,7 @@
 "use client";
 import React, { useState, useEffect, useCallback } from "react";
 import { useUser } from "@clerk/nextjs";
-import { fetchHighScore } from "@/services/getHighScoreAPI/route";
+import { fetchHighScore } from "@/lib/api-client";
 import Image from "next/image";
 
 export default function ProfilePage() {

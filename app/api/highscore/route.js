@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import supabase from '@/lib/supabase';
+import { GameService } from '@/lib/api-services';
 
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
@@ -10,17 +10,7 @@ export async function GET(request) {
     }
 
     try {
-        const { data, error } = await supabase
-            .from('games')
-            .select('*')
-            .eq('player_id', playerId)
-            .order('score', { ascending: false })
-            .limit(1)
-            .single();
-
-        if (error && error.code !== 'PGRST116') {
-            throw error;
-        }
+        const data = await GameService.getHighScore(playerId);
 
         if (!data) {
             return NextResponse.json({ message: 'No games found for the specified player' }, { status: 404 });

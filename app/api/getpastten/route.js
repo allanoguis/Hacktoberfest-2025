@@ -1,5 +1,5 @@
 import { NextResponse } from 'next/server';
-import supabase from '@/lib/supabase';
+import { GameService } from '@/lib/api-services';
 
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
@@ -10,15 +10,7 @@ export async function GET(request) {
     }
 
     try {
-        const { data: pastTenGames, error } = await supabase
-            .from('games')
-            .select('*')
-            .eq('player_id', userId)
-            .order('time', { ascending: false })
-            .limit(10);
-
-        if (error) throw error;
-
+        const pastTenGames = await GameService.getPastTenGames(userId);
         return NextResponse.json({ pastTenGames });
     } catch (error) {
         console.error('Error getting past ten games:', error);

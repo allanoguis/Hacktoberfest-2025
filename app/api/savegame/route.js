@@ -1,31 +1,23 @@
 import { NextResponse } from 'next/server';
-import supabase from '@/lib/supabase';
+import { GameService } from '@/lib/api-services';
+import { auth } from '@clerk/nextjs/server';
 
 export async function POST(request) {
     try {
-        const { player, playerName, time, score, ipAddress, deviceType, userAgent } = await request.json();
+        const body = await request.json();
+        const { player } = body;
+        const { userId } = auth();
 
-        const { data, error } = await supabase
-            .from('games')
-            .insert([
-                {
-                    player_id: player,
-                    player_name: playerName,
-                    time: time,
-                    score: score,
-                    ip_address: ipAddress,
-                    device_type: deviceType,
-                    user_agent: userAgent,
-                    created_at: new Date()
-                }
-            ])
-            .select();
+        // Security Check: If a real player ID is provided, it must match the active session.
+        // Guest players (000000) are allowed without session matching.
+        if (player !== '000000' && userId && player !== userId) {
+            return NextResponse.json({ message: 'Unauthorized session mismatch' }, { status: 403 });
+        }
 
-        if (error) throw error;
-
-        return NextResponse.json({ message: 'Game saved successfully', id: data[0].id }, { status: 201 });
+        const savedGame = await GameService.saveGame(body);
+        return NextResponse.json({ message: 'Game saved successfully', id: savedGame.id }, { status: 201 });
     } catch (error) {
-        console.error('Error saving game:', error);
+        console.error('Error in savegame route:', error);
         return NextResponse.json({ message: 'Error saving game' }, { status: 500 });
     }
 }

@@ -12,18 +12,17 @@ import { Medal } from "lucide-react";
 import { Trophy } from "lucide-react";
 import { Star } from "lucide-react";
 
+import { getLeaderboard } from "@/lib/api-client";
+
 export const Leaderboard = () => {
   const [data, setData] = useState(null);
   const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null); //  if theres an error, use Failed to load leaderboard data
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const response = await fetch('/api/leaderboard');
-        if (!response.ok) throw new Error('Failed to load leaderboard');
-        const result = await response.json();
-        console.log("API Response:", result); // debugging line to check API response
+        const result = await getLeaderboard();
         setData(result);
       } catch (error) {
         console.error("Error fetching data:", error);
