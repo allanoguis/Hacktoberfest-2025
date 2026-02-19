@@ -161,13 +161,14 @@ export default function Engine() {
   const handleInput = useCallback(
     (event) => {
       const allowedKeys = ["Space", "ArrowUp"];
-      if (!gameStarted) {
-        handleStartGame();
-      } else if (allowedKeys.includes(event.code) || event.type === "click") {
+      const isJumpKey = allowedKeys.includes(event.code) || event.type === "click";
+
+      // Only allow jumping if the game is running and not over
+      if (gameStarted && !gameOver && isJumpKey) {
         jump();
       }
     },
-    [gameStarted, jump]
+    [gameStarted, gameOver, jump]
   );
 
   useEffect(() => {
@@ -330,7 +331,10 @@ export default function Engine() {
 
   const StartGameButton = ({ onClick, isGameOver }) => (
     <button
-      onClick={onClick}
+      onClick={(e) => {
+        e.stopPropagation();
+        onClick();
+      }}
       className="px-8 py-3 bg-primary text-secondary font-bold text-xl rounded-full hover:scale-105 transition-transform animate-pulse antialiased shadow-lg"
     >
       {isGameOver ? "R E S T A R T" : "S T A R T   G A M E"}
