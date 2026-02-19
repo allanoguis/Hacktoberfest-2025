@@ -20,10 +20,6 @@ export default function Hero() {
     visible: { opacity: 1, transition: { duration: 0.5 } },
   };
 
-  // Calculate screen height
-  const screenHeight = typeof window !== "undefined" ? window.innerHeight : 0; // Get screen height
-  const screenWidth = typeof window !== "undefined" ? window.innerWidth : 0; // Get screen width
-
   const router = useRouter();
   const Start = () => {
     router.push("/game");
@@ -31,7 +27,7 @@ export default function Hero() {
 
   return (
     <>
-      <section className="flex items-center justify-center  min-h-screen min-w-full bg-gradient-to-b from-blue-400 to-orange-400 dark:from-blue-900 dark:to-orange-900 bg-fill">
+      <section className="relative flex items-center justify-center h-[calc(100vh-var(--nav-height))] mt-[var(--nav-height)] w-full bg-gradient-to-b from-blue-400 to-orange-400 dark:from-blue-900 dark:to-orange-900 overflow-hidden">
         {/* Loading Screen */}
         {!isLoaded && (
           <motion.div
@@ -49,120 +45,108 @@ export default function Hero() {
           initial={{ opacity: 0 }}
           animate={{ opacity: isLoaded ? 1 : 0 }}
           transition={{ duration: 0.5 }}
-          className="relative z-10 text-center"
+          className="relative z-10 text-center px-4"
         >
-          <p className="text-5xl font-extrabold mb-4 uppercase">
-            Welcome to Gojirun! {username}
+          <p className="text-3xl md:text-5xl font-extrabold mb-4 uppercase text-balance">
+            Welcome to Gojirun, {username}!
           </p>
 
-          {/* Tagline */}
-          <p className="text-lg mb-8">
+          <p className="text-base md:text-lg mb-8 opacity-90">
             A 2D platformer inspired by the classic Chrome T-Rex run.
           </p>
 
-          {/* Play Now Button */}
           <Button
             asChild
-            className="px-8 py-6 bg-gradient-to-r from-accent to-pink-600 text-lg font-bold rounded-full hover:animate-ping-once transition-transform duration-1000 shadow-lg animate-bounce"
+            className="px-8 py-6 bg-gradient-to-r from-accent to-pink-600 text-lg font-bold rounded-full hover:animate-ping-once transition-transform duration-1000 shadow-lg animate-bounce cursor-pointer group"
             onClick={Start}
           >
-            <span>Play Now</span>
+            <span className="group-hover:scale-105 transition-transform">Play Now</span>
           </Button>
         </motion.div>
 
         {/* gojira */}
         <motion.div
-          initial={{
-            opacity: 0,
-            x: -800, // gojira initial position
-            y: 0,
-          }}
+          initial={{ opacity: 0, x: -500 }}
           animate={{
             opacity: 1,
-            x: 20, // End at left 0
-            y: screenHeight - 480, // Move to the calculated bottom of the screen
+            x: 0,
+            bottom: "0%",
           }}
-          exit={{ opacity: 0, transition: { duration: 0.5 } }} // Added transition for exit
-          transition={{ duration: 1 }} // Duration of the animation
-          className="absolute top-0 left-0" // Positioning the image
+          transition={{ duration: 1, type: "spring", damping: 20 }}
+          className="absolute left-0 bottom-0 pointer-events-none"
         >
-          <Image src={herogojira} alt="Gojira Hero" height={500} />
+          <div className="relative w-[300px] md:w-[500px] h-[300px] md:h-[500px]">
+            <Image
+              src={herogojira}
+              alt="Gojira Hero"
+              fill
+              className="object-contain object-bottom"
+              priority
+            />
+          </div>
         </motion.div>
 
         {/* tank */}
         <motion.div
-          initial={{
-            opacity: 0,
-            x: screenWidth,
-            y: screenHeight - 250, // tank initial position
-          }}
+          initial={{ opacity: 0, x: 500 }}
           animate={{
             opacity: 1,
-            x: screenWidth - 600,
-            y: screenHeight - 250, // scroll tank to left
+            x: 0,
+            bottom: "2rem",
           }}
-          exit={{ opacity: 0, transition: { duration: 0.5 } }} // Added transition for exit
-          transition={{ duration: 1, delay: 0.2 }}
-          className="absolute top-0 left-0"
+          transition={{ duration: 1, delay: 0.2, type: "spring", damping: 20 }}
+          className="absolute right-0 bottom-0 pointer-events-none"
         >
-          <Image src={herotank} alt="Tank Hero" width={500} />
+          <div className="relative w-[250px] md:w-[500px] h-[150px] md:h-[250px]">
+            <Image
+              src={herotank}
+              alt="Tank Hero"
+              fill
+              className="object-contain object-bottom"
+            />
+          </div>
         </motion.div>
 
-        {/* cloud1 */}
+        {/* cloud1 (background decoration) */}
         <motion.div
-          initial={{
-            opacity: 0,
-            x: screenWidth * 1,
-            y: screenHeight * 0.1,
-          }}
+          initial={{ opacity: 0, x: "100%" }}
           animate={{
-            opacity: 1,
-            x: screenWidth * 0.1,
-            y: screenHeight * 0.1,
+            opacity: 0.6,
+            x: "10%",
+            top: "15%",
           }}
-          exit={{ opacity: 0, transition: { duration: 0.5 } }} // Added transition for exit
-          transition={{ duration: 1, delay: 1 }}
-          className="absolute top-0 left-0"
+          transition={{ duration: 2, delay: 0.5 }}
+          className="absolute pointer-events-none select-none blur-[1px]"
         >
-          <Image src={cloud1} alt="cloud1" />
+          <Image src={cloud1} alt="Decoration Cloud" width={150} />
         </motion.div>
 
-        {/* cloud2 */}
+        {/* cloud2 (background decoration) */}
         <motion.div
-          initial={{
-            opacity: 0,
-            x: screenWidth * 1,
-            y: screenHeight * 0.25,
-          }}
+          initial={{ opacity: 0, x: "100%" }}
           animate={{
-            opacity: 1,
-            x: screenWidth * 0.4,
-            y: screenHeight * 0.25,
+            opacity: 0.4,
+            x: "45%",
+            top: "25%",
           }}
-          exit={{ opacity: 0, transition: { duration: 0.5 } }} // Added transition for exit
-          transition={{ duration: 1, delay: 1 }}
-          className="absolute top-0 left-0"
+          transition={{ duration: 2, delay: 0.7 }}
+          className="absolute pointer-events-none select-none blur-[2px]"
         >
-          <Image src={cloud1} alt="cloud1" />
+          <Image src={cloud1} alt="Decoration Cloud" width={200} />
         </motion.div>
 
-        {/* cloud3 */}
+        {/* cloud3 (background decoration) */}
         <motion.div
-          initial={{
-            opacity: 0,
-            x: screenWidth * 1,
-            y: screenHeight * 0.15,
-          }}
+          initial={{ opacity: 0, x: "100%" }}
           animate={{
-            opacity: 1,
-            x: screenWidth * 0.7,
-            y: screenHeight * 0.15,
+            opacity: 0.5,
+            x: "75%",
+            top: "10%",
           }}
-          exit={{ opacity: 0, transition: { duration: 0.5 } }} // Added transition for exit
-          transition={{ duration: 1, delay: 1 }}
-          className="absolute top-0 left-0"
+          transition={{ duration: 2, delay: 1 }}
+          className="absolute pointer-events-none select-none blur-[1px]"
         >
-          <Image src={cloud1} alt="cloud1" />
+          <Image src={cloud1} alt="Decoration Cloud" width={120} />
         </motion.div>
       </section>
     </>

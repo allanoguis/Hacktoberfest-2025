@@ -47,7 +47,7 @@ export default function Navigation() {
   ];
 
   return (
-    <nav className="fixed top-0 left-0 z-50 w-full bg-transparent backdrop-blur-md px-4 sm:px-6 lg:px-8 h-16 flex items-center justify-between">
+    <nav className="fixed top-0 left-0 z-50 w-full bg-transparent backdrop-blur-md px-4 sm:px-6 lg:px-8 h-[var(--nav-height)] flex items-center justify-between">
       {/* Left section */}
       <div className="flex items-center space-x-3">
         <span className="text-sm sm:text-base">

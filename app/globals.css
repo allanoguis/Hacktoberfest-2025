@@ -44,6 +44,7 @@ html {
 
 @layer base {
   :root {
+    --nav-height: 64px;
     --font-space: "Space Grotesk";
     --background: 51, 48%, 92%;
     --foreground: 222.2 84% 4.9%;
@@ -73,6 +74,7 @@ html {
   }
 
   .dark {
+    --nav-height: 64px;
     --font-space: "Space Grotesk";
     --background: 222, 47%, 11%;
     --foreground: 210 40% 98%;
