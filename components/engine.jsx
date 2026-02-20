@@ -366,13 +366,6 @@ export default function Engine() {
         <span className="font-bold text-2xl tracking-tighter">GOJIRUN</span>
         <div className="flex items-center gap-3">
           <div className="flex flex-col items-end">
-            <button
-              onClick={handleManualSave}
-              disabled={isSaving || score === 0}
-              className="px-3 py-1 bg-primary text-secondary text-[10px] font-bold rounded-md hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100 antialiased shadow-sm"
-            >
-              {isSaving ? "SAVING..." : "SAVE SCORE"}
-            </button>
             <span className="font-mono text-xl bg-primary/10 px-4 py-1 rounded-md">
               {score.toString().padStart(6, '0')}
             </span>
@@ -382,6 +375,13 @@ export default function Engine() {
               </span>
             )}
           </div>
+          <button
+            onClick={handleManualSave}
+            disabled={isSaving || score === 0}
+            className="px-3 py-1 bg-primary text-secondary text-[10px] font-bold rounded-md hover:scale-105 active:scale-95 transition-all disabled:opacity-50 disabled:hover:scale-100 antialiased shadow-sm"
+          >
+            {isSaving ? "SAVING..." : "SAVE SCORE"}
+          </button>
         </div>
       </div>
 
