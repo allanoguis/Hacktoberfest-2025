@@ -361,7 +361,7 @@ export default function Engine() {
   );
 
   return (
-    <div className="grid relative w-full h-[100vh] p-4 lg:p-11 text-primary justify-center items-center select-none font-space overscroll-none">
+    <div className="grid relative w-full min-h-screen pt-[64px] p-4 lg:p-11 text-primary justify-center items-center select-none font-space overscroll-none">
       <div className="flex justify-between items-center mb-4 w-full px-2">
         <span className="font-bold text-2xl tracking-tighter">GOJIRUN</span>
         <div className="flex items-center gap-3">
