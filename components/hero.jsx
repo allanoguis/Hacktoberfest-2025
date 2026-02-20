@@ -70,7 +70,7 @@ export default function Hero() {
           animate={{
             opacity: 1,
             x: 0,
-            bottom: "0%",
+            bottom: 0,
           }}
           transition={{ duration: 1, type: "spring", damping: 20 }}
           className="absolute left-0 bottom-0 pointer-events-none"
@@ -92,7 +92,7 @@ export default function Hero() {
           animate={{
             opacity: 1,
             x: 0,
-            bottom: "2rem",
+            bottom: 0,
           }}
           transition={{ duration: 1, delay: 0.2, type: "spring", damping: 20 }}
           className="absolute right-0 bottom-0 pointer-events-none"
