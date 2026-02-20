@@ -342,7 +342,7 @@ export default function Engine() {
   );
 
   return (
-    <div className="grid relative w-full p-4 lg:p-11 text-primary justify-center items-center select-none font-space">
+    <div className="grid relative w-full h-[100vh] p-4 lg:p-11 text-primary justify-center items-center select-none font-space overscroll-none">
       <div className="flex justify-between items-center mb-4 w-full px-2">
         <span className="font-bold text-2xl tracking-tighter">GOJIRUN</span>
         <span className="font-mono text-xl bg-primary/10 px-4 py-1 rounded-md">
@@ -356,12 +356,12 @@ export default function Engine() {
           id="gameCanvas"
           width={GAME_WIDTH}
           height={GAME_HEIGHT}
-          className="w-full h-auto bg-gradient-to-b from-blue-400 to-orange-400 dark:from-blue-900 dark:to-orange-900"
+          className="w-auto h-[80vh] max-w-full rounded-xl object-contain bg-gradient-to-b from-blue-400 to-orange-400 dark:from-blue-900 dark:to-orange-900"
         />
 
-        <div className="absolute inset-0 flex flex-col justify-center items-center backdrop-blur-[2px] bg-black/10 transition-all duration-500">
+        <div className="absolute inset-0 flex flex-col justify-center items-center transition-all duration-500">
           {(gameOver || !gameStarted) && (
-            <div className="bg-background/90 p-10 rounded-2xl shadow-2xl border border-primary/20 flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-300">
+            <div className="bg-transparent p-10 rounded-2xl shadow-2xl border border-primary/20 flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-300">
               {gameOver && <GameOverMessage />}
               <StartGameButton onClick={handleStartGame} isGameOver={gameOver} />
             </div>
