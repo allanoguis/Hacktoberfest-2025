@@ -1,12 +1,20 @@
 import { NextResponse } from 'next/server';
 import { GameService } from '@/lib/api-services';
 
+import { auth } from '@clerk/nextjs/server';
+
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
     const userId = searchParams.get('userId');
+    const { userId: authedUserId } = auth();
 
     if (!userId) {
         return NextResponse.json({ message: 'User ID is required' }, { status: 400 });
+    }
+
+    // Security Check: Ensure the user is requesting their own profile
+    if (userId !== authedUserId) {
+        return NextResponse.json({ message: 'Unauthorized profile access' }, { status: 403 });
     }
 
     try {
