@@ -45,11 +45,14 @@ export const Leaderboard = () => {
 
   return (
     <>
-      <div className="flex flex-col w-full h-screen overflow-y-scroll items-center justify-center text-white">
-        <div className="mb-10">
-          <Badge variant="default" className="text-xl">
+      <div className="flex flex-col w-full min-h-screen items-center text-white pt-[calc(var(--nav-height)+4rem)] pb-20">
+        <div className="mb-12 text-center px-4">
+          <Badge variant="default" className="text-xl md:text-2xl px-6 py-2 shadow-lg">
             Top Ranking Players
           </Badge>
+          <p className="mt-4 text-primary/60 text-sm uppercase tracking-[0.2em] antialiased">
+            Global Hall of Fame
+          </p>
         </div>
         <ul className="flex flex-col gap-4 w-full max-w-2xl px-4 pb-20">
           {data && data.leaderboard && data.leaderboard.length > 0 ? (
