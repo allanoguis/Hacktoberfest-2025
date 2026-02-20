@@ -163,10 +163,14 @@ export default function Engine() {
   const handleInput = useCallback(
     (event) => {
       const allowedKeys = ["Space", "ArrowUp"];
-      const isJumpKey = allowedKeys.includes(event.code) || event.type === "click";
+      const isJumpKey =
+        allowedKeys.includes(event.code) ||
+        event.type === "click" ||
+        event.type === "touchstart";
 
       // Only allow jumping if the game is running and not over
       if (gameStarted && !gameOver && isJumpKey) {
+        if (event.cancelable) event.preventDefault();
         jump();
       }
     },
@@ -176,9 +180,11 @@ export default function Engine() {
   useEffect(() => {
     document.addEventListener("keydown", handleInput);
     document.addEventListener("click", handleInput);
+    document.addEventListener("touchstart", handleInput, { passive: false });
     return () => {
       document.removeEventListener("keydown", handleInput);
       document.removeEventListener("click", handleInput);
+      document.removeEventListener("touchstart", handleInput);
     };
   }, [handleInput]);
 
@@ -340,11 +346,11 @@ export default function Engine() {
   };
 
   const GameOverMessage = () => (
-    <div className="flex flex-col items-center gap-4">
-      <span className="text-4xl text-primary font-bold uppercase antialiased tracking-widest">
-        G A M E O V E R
+    <div className="flex flex-col items-center gap-2 md:gap-4">
+      <span className="text-2xl md:text-4xl text-primary font-bold uppercase antialiased tracking-widest text-center">
+        G A M E   O V E R
       </span>
-      <span className="text-xl">Final Score: {score}</span>
+      <span className="text-lg md:text-xl">Final Score: {score}</span>
     </div>
   );
 
@@ -354,19 +360,28 @@ export default function Engine() {
         e.stopPropagation();
         onClick();
       }}
-      className="px-8 py-3 bg-primary text-secondary font-bold text-xl rounded-full hover:scale-105 transition-transform animate-pulse antialiased shadow-lg"
+      className="px-6 md:px-8 py-2 md:py-3 bg-primary text-secondary font-bold text-lg md:text-xl rounded-full hover:scale-105 transition-transform animate-pulse antialiased shadow-lg whitespace-nowrap"
     >
       {isGameOver ? "R E S T A R T" : "S T A R T   G A M E"}
     </button>
   );
 
   return (
-    <div className="grid relative w-full min-h-screen mt-[120px] p-4 lg:p-11 text-primary justify-center items-center select-none font-space overscroll-none">
-      <div className="flex justify-between items-center mb-4 w-full px-2">
-        <span className="font-bold text-2xl tracking-tighter">GOJIRUN</span>
-        <div className="flex items-center gap-3">
+    <div className="flex flex-col relative w-full min-h-screen p-4 lg:p-11 text-primary justify-center items-center select-none font-space overscroll-none">
+      <div className="flex flex-col-reverse md:flex-row justify-between items-center w-full max-w-[1000px] gap-4 px-2 py-2">
+        <div className="flex justify-center gap-4 md:gap-8 text-[10px] md:text-sm font-medium text-primary/60 uppercase tracking-widest antialiased">
+          <div className="hidden md:flex items-center gap-2">
+            <kbd className="px-2 py-1 bg-primary/10 rounded border border-primary/20 font-sans">SPACE</kbd>
+            <span>JUMP</span>
+          </div>
+          <div className="flex items-center gap-2">
+            <kbd className="px-2 py-1 bg-primary/10 rounded border border-primary/20 font-sans">TAP</kbd>
+            <span className="hidden md:inline">JUMP</span>
+          </div>
+        </div>
+        <div className="flex items-center justify-between w-full md:w-auto gap-3">
           <div className="flex flex-col items-end">
-            <span className="font-mono text-xl bg-primary/10 px-4 py-1 rounded-md">
+            <span className="font-mono text-lg md:text-xl bg-primary/10 px-4 py-1 rounded-md">
               {score.toString().padStart(6, '0')}
             </span>
             {saveMessage && (
@@ -378,40 +393,29 @@ export default function Engine() {
           <button
             onClick={handleManualSave}
             disabled={isSaving || score === 0}
-            className="px-4 py-1 bg-primary text-secondary text-xl font-bold rounded-md hover:bg-red-600 hover:text-white transition-all disabled:opacity-50 antialiased shadow-sm"
+            className="px-3 md:px-4 py-1 bg-primary text-secondary text-sm md:text-xl font-bold rounded-md hover:bg-red-600 hover:text-white transition-all disabled:opacity-50 antialiased shadow-sm whitespace-nowrap"
           >
             {isSaving ? "SAVING..." : "SAVE SCORE"}
           </button>
         </div>
       </div>
 
-      <div className="relative group rounded-xl overflow-hidden shadow-2xl">
+      <div className="relative group rounded-xl overflow-hidden shadow-2xl touch-none">
         <canvas
           ref={canvasRef}
           id="gameCanvas"
           width={GAME_WIDTH}
           height={GAME_HEIGHT}
-          className="w-auto h-[80vh] max-w-full rounded-xl object-contain bg-gradient-to-b from-blue-400 to-orange-400 dark:from-blue-900 dark:to-orange-900"
+          className="w-full max-w-[1000px] h-auto aspect-[5/3] rounded-xl object-contain bg-gradient-to-b from-blue-400 to-orange-400 dark:from-blue-900 dark:to-orange-900 shadow-2xl"
         />
 
         <div className="absolute inset-0 flex flex-col justify-center items-center transition-all duration-500">
           {(gameOver || !gameStarted) && (
-            <div className="bg-transparent p-10 rounded-2xl shadow-2xl border border-primary/20 flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-300">
+            <div className="bg-background/80 backdrop-blur-sm p-6 md:p-10 rounded-2xl shadow-2xl border border-primary/20 flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-300 mx-4">
               {gameOver && <GameOverMessage />}
               <StartGameButton onClick={handleStartGame} isGameOver={gameOver} />
             </div>
           )}
-        </div>
-      </div>
-
-      <div className="mt-6 flex justify-center gap-8 text-sm font-medium text-primary/60 uppercase tracking-widest antialiased">
-        <div className="flex items-center gap-2">
-          <kbd className="px-2 py-1 bg-primary/10 rounded border border-primary/20">SPACE</kbd>
-          <span>JUMP</span>
-        </div>
-        <div className="flex items-center gap-2">
-          <kbd className="px-2 py-1 bg-primary/10 rounded border border-primary/20">CLICK</kbd>
-          <span>JUMP</span>
         </div>
       </div>
     </div>
