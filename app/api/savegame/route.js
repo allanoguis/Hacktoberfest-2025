@@ -23,11 +23,20 @@ export async function POST(request) {
 
         // Security Check: If a real player ID is provided, it must match the active session.
         // Guest players (000000) are allowed without session matching.
-        if (player !== '000000' && userId && player !== userId) {
-            return NextResponse.json({ message: 'Unauthorized session mismatch' }, { status: 403 });
+        if (player !== '000000') {
+            if (!userId) {
+                return NextResponse.json({ message: 'Authentication required' }, { status: 401 });
+            }
+
+            if (player !== userId) {
+                return NextResponse.json({ message: 'Unauthorized session mismatch' }, { status: 403 });
+            }
         }
 
         const savedGame = await GameService.saveGame(body);
+        if (!savedGame?.id) {
+            return NextResponse.json({ message: 'Game saved but no record returned' }, { status: 500 });
+        }
         return NextResponse.json({ message: 'Game saved successfully', id: savedGame.id }, { status: 201 });
     } catch (error) {
         console.error('Error in savegame route:', {
@@ -37,12 +46,14 @@ export async function POST(request) {
             hint: error?.hint,
             stack: error?.stack
         });
+
+        const isDev = process.env.NODE_ENV === 'development';
         return NextResponse.json(
             {
                 message: `Error saving game: ${error?.message || 'Unknown error'}`,
-                code: error?.code,
-                details: error?.details,
-                hint: error?.hint
+                code: isDev ? error?.code : undefined,
+                details: isDev ? error?.details : undefined,
+                hint: isDev ? error?.hint : undefined
             },
             { status: 500 }
         );

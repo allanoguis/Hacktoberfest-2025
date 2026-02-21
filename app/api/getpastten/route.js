@@ -3,7 +3,7 @@ import { GameService } from '@/lib/api-services';
 
 export async function GET(request) {
     const { searchParams } = new URL(request.url);
-    const userId = searchParams.get('userId');
+    const userId = searchParams.get('playerId') || searchParams.get('userId');
 
     if (!userId) {
         return NextResponse.json({ message: 'User ID is required' }, { status: 400 });
