@@ -13,11 +13,19 @@ try {
   const customUrl = process.env.NEXT_PUBLIC_GUEST_AVATAR_URL?.trim();
   if (customUrl) {
     const parsed = new URL(customUrl);
+    // Restrict pathname to the avatar path only (directory + /**), not the whole domain.
+    // Only strip the last segment when path has multiple segments (e.g. /avatars/guest.png -> /avatars).
+    // Single-segment paths (e.g. /avatars) stay as-is so we get /avatars/** not /**.
+    const rawPath = parsed.pathname;
+    const pathDir =
+      rawPath.indexOf("/", 1) !== -1 ? rawPath.replace(/\/[^/]*$/, "") : rawPath;
+    const pathname =
+      !pathDir || pathDir === "/" ? "/**" : `${pathDir}/**`;
     customGuestAvatarPattern = {
       protocol: parsed.protocol.replace(":", ""),
       hostname: parsed.hostname,
       port: parsed.port || "",
-      pathname: "/**",
+      pathname,
     };
   }
 } catch {
