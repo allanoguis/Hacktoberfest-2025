@@ -2,6 +2,7 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useUser } from "@clerk/nextjs";
 import { fetchHighScore } from "@/lib/api-client";
+import { GUEST_AVATAR_URL } from "@/lib/constants";
 import Image from "next/image";
 
 export default function ProfilePage() {
@@ -15,7 +16,7 @@ export default function ProfilePage() {
   const uimage =
     isLoaded && isSignedIn && user
       ? user.imageUrl
-      : "https://nosrc.net/100x100";
+      : GUEST_AVATAR_URL;
   const ucd =
     isLoaded && isSignedIn && user && user.createdAt
       ? new Date(user.createdAt).toLocaleDateString()

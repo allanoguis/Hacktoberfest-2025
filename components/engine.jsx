@@ -7,6 +7,7 @@ import cloud1Image from "@/assets/images/game/cloud1.png";
 import cloud2Image from "@/assets/images/game/cloud2.png";
 import cloud3Image from "@/assets/images/game/cloud3.png";
 import { saveGame, saveUser } from "@/lib/api-client";
+import { GUEST_AVATAR_URL } from "@/lib/constants";
 import { useUser } from "@clerk/nextjs";
 
 // Constants
@@ -105,7 +106,7 @@ export default function Engine() {
         const playerID = isLoaded && isSignedIn && user ? user.id : "000000";
         const email = isLoaded && isSignedIn && user && user.emailAddresses[0] ? user.emailAddresses[0].emailAddress : "guest@gojirun.local";
         const fullname = isLoaded && isSignedIn && user ? user.firstName || "Guest" : "Guest";
-        const profileImage = isLoaded && isSignedIn && user ? user.imageUrl : "https://nosrc.net/100x100";
+        const profileImage = isLoaded && isSignedIn && user ? user.imageUrl : GUEST_AVATAR_URL;
         const createdAt = isLoaded && isSignedIn && user ? user.createdAt : new Date();
         const lastSignInAt = isLoaded && isSignedIn && user ? user.lastSignInAt : new Date();
 
