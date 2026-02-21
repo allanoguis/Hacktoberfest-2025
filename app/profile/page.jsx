@@ -2,8 +2,11 @@
 import React, { useState, useEffect, useCallback } from "react";
 import { useUser } from "@clerk/nextjs";
 import { fetchHighScore } from "@/lib/api-client";
-import { GUEST_AVATAR_URL } from "@/lib/constants";
 import Image from "next/image";
+
+const guestAvatarUrl =
+  (typeof process !== "undefined" && process.env?.NEXT_PUBLIC_GUEST_AVATAR_URL?.trim()) ||
+  "https://api.dicebear.com/7.x/avataaars/png?seed=Guest&size=200";
 
 export default function ProfilePage() {
   const { isLoaded, isSignedIn, user } = useUser();
@@ -16,7 +19,7 @@ export default function ProfilePage() {
   const uimage =
     isLoaded && isSignedIn && user
       ? user.imageUrl
-      : GUEST_AVATAR_URL;
+      : guestAvatarUrl;
   const ucd =
     isLoaded && isSignedIn && user && user.createdAt
       ? new Date(user.createdAt).toLocaleDateString()
