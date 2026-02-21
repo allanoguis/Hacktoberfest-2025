@@ -103,7 +103,7 @@ const LeaderboardFilters = ({
           <div className="flex items-center gap-2 flex-wrap">
             {filters.search && (
               <Badge variant="secondary" className="flex items-center gap-1">
-                Search: "{filters.search}"
+                Search: &quot;{filters.search}&quot;
                 <button
                   onClick={() => {
                     setSearchInput('');

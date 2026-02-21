@@ -1,6 +1,7 @@
 "use client";
 import React from 'react';
 import { Trophy, Clock, Gamepad2, TrendingUp, Award } from 'lucide-react';
+import Image from 'next/image';
 import { Badge } from './badge';
 
 const PlayerStats = ({ 
@@ -62,13 +63,16 @@ const PlayerStats = ({
         </div>
         
         <div className="flex-shrink-0 relative w-10 h-10">
-          <img
+          <Image
             src={player.profileImageUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.playerName || 'Guest'}`}
             alt={player.playerName}
+            width={40}
+            height={40}
             className="w-full h-full rounded-full border-2 border-primary/20 object-cover"
             onError={(e) => {
               e.target.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.playerName || 'Guest'}`;
             }}
+            unoptimized
           />
         </div>
         
@@ -122,13 +126,16 @@ const PlayerStats = ({
 
             {/* Player Avatar */}
             <div className="flex-shrink-0 relative w-14 h-14">
-              <img
+              <Image
                 src={player.profileImageUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.playerName || 'Guest'}`}
                 alt={player.playerName}
+                width={56}
+                height={56}
                 className="w-full h-full rounded-full border-2 border-primary/20 object-cover ring-2 ring-primary/10 group-hover:ring-primary/30 transition-all"
                 onError={(e) => {
                   e.target.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.playerName || 'Guest'}`;
                 }}
+                unoptimized
               />
               {rank < 3 && (
                 <div className="absolute -top-1 -right-1 w-4 h-4 rounded-full bg-gradient-to-br from-yellow-400 to-yellow-600 animate-pulse border-2 border-background" />
