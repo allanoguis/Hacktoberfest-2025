@@ -8,6 +8,22 @@ try {
   // Invalid URL format; omit Supabase from image domains
 }
 
+let customGuestAvatarPattern = null;
+try {
+  const customUrl = process.env.NEXT_PUBLIC_GUEST_AVATAR_URL?.trim();
+  if (customUrl) {
+    const parsed = new URL(customUrl);
+    customGuestAvatarPattern = {
+      protocol: parsed.protocol.replace(":", ""),
+      hostname: parsed.hostname,
+      port: parsed.port || "",
+      pathname: "/**",
+    };
+  }
+} catch {
+  // Invalid URL; guest avatar will use Supabase or DiceBear
+}
+
 const imagePatterns = [
   {
     protocol: "https",
@@ -31,6 +47,7 @@ const imagePatterns = [
         },
       ]
     : []),
+  ...(customGuestAvatarPattern ? [customGuestAvatarPattern] : []),
 ];
 
 /** @type {import('next').NextConfig} */
