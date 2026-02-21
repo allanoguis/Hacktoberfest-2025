@@ -120,7 +120,7 @@ export default function Hero() {
           </div>
         </motion.div>
 
-        {/* tank */}
+        {/* tank - hidden on mobile, visible from md breakpoint */}
         <motion.div
           initial={{ opacity: 0, x: 500 }}
           animate={{
@@ -129,7 +129,7 @@ export default function Hero() {
             bottom: 0,
           }}
           transition={{ duration: 1, delay: 0.2, type: "spring", damping: 20 }}
-          className="absolute right-0 bottom-0 pointer-events-none z-20"
+          className="absolute right-0 bottom-0 pointer-events-none z-20 hidden md:block"
         >
           <div className="relative w-[250px] md:w-[500px] h-[150px] md:h-[250px]">
             <Image
