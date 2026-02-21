@@ -17,7 +17,21 @@ export async function POST(request) {
         const result = await GameService.saveUser(body);
         return NextResponse.json(result, { status: result.message.includes('created') ? 201 : 200 });
     } catch (error) {
-        console.error('Error in users route:', error);
-        return NextResponse.json({ message: 'Error saving user' }, { status: 500 });
+        console.error('Error in users route:', {
+            message: error?.message,
+            code: error?.code,
+            details: error?.details,
+            hint: error?.hint,
+            stack: error?.stack
+        });
+        return NextResponse.json(
+            {
+                message: `Error saving user: ${error?.message || 'Unknown error'}`,
+                code: error?.code,
+                details: error?.details,
+                hint: error?.hint
+            },
+            { status: 500 }
+        );
     }
 }

@@ -30,7 +30,21 @@ export async function POST(request) {
         const savedGame = await GameService.saveGame(body);
         return NextResponse.json({ message: 'Game saved successfully', id: savedGame.id }, { status: 201 });
     } catch (error) {
-        console.error('Error in savegame route:', error);
-        return NextResponse.json({ message: `Error saving game: ${error.message || 'Unknown error'}` }, { status: 500 });
+        console.error('Error in savegame route:', {
+            message: error?.message,
+            code: error?.code,
+            details: error?.details,
+            hint: error?.hint,
+            stack: error?.stack
+        });
+        return NextResponse.json(
+            {
+                message: `Error saving game: ${error?.message || 'Unknown error'}`,
+                code: error?.code,
+                details: error?.details,
+                hint: error?.hint
+            },
+            { status: 500 }
+        );
     }
 }
