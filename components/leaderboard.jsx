@@ -121,11 +121,11 @@ export const Leaderboard = () => {
             <Trophy className="w-6 h-6 mr-2" />
             Top Ranking Players
           </Badge>
-          <p className="text-primary/60 text-sm uppercase tracking-[0.2em] antialiased">
+          <p className="text-primary-secondary text-sm uppercase tracking-[0.2em] antialiased">
             Global Hall of Fame
           </p>
           {data?.pagination?.total > 0 && (
-            <p className="text-muted-foreground text-sm mt-2">
+            <p className="text-tertiary text-sm mt-2">
               {data.pagination.total.toLocaleString()} total players
             </p>
           )}
@@ -141,7 +141,7 @@ export const Leaderboard = () => {
         {/* Results Summary */}
         {leaderboardData.length > 0 && (
           <div className="w-full max-w-2xl px-4 mb-4">
-            <div className="flex items-center justify-between text-sm text-muted-foreground">
+            <div className="flex items-center justify-between text-sm text-tertiary">
               <span>
                 Showing {((pagination.currentPage - 1) * 10) + 1}-{Math.min(pagination.currentPage * 10, data.pagination?.total || 0)} of {data.pagination?.total || 0} players
               </span>
@@ -167,10 +167,10 @@ export const Leaderboard = () => {
           ) : (
             <div className="text-center py-20">
               <Trophy className="w-16 h-16 mx-auto mb-4 text-muted-foreground/30" />
-              <h3 className="text-xl font-semibold mb-2 text-muted-foreground">
+              <h3 className="text-xl font-semibold mb-2 text-tertiary">
                 {filters.search ? 'No players found' : 'No champions found yet'}
               </h3>
-              <p className="text-muted-foreground/60">
+              <p className="text-subtle">
                 {filters.search 
                   ? 'Try adjusting your search terms' 
                   : 'Be the first to claim the top spot!'
@@ -185,7 +185,7 @@ export const Leaderboard = () => {
           <div className="fixed inset-0 bg-background/50 backdrop-blur-sm flex items-center justify-center z-50">
             <div className="text-center">
               <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-2"></div>
-              <p className="text-sm text-muted-foreground">Loading...</p>
+              <p className="text-sm text-tertiary">Loading...</p>
             </div>
           </div>
         )}

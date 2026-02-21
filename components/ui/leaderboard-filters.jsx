@@ -44,20 +44,20 @@ const LeaderboardFilters = ({
       {/* Search Bar */}
       <form onSubmit={handleSearchSubmit} className="mb-4">
         <div className="relative">
-          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-muted-foreground w-4 h-4" />
+          <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 text-tertiary w-4 h-4" />
           <input
             type="text"
             placeholder="Search players by name or email..."
             value={searchInput}
             onChange={(e) => setSearchInput(e.target.value)}
-            className="w-full pl-10 pr-10 py-3 bg-background/50 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-white placeholder:text-muted-foreground"
+            className="w-full pl-10 pr-10 py-3 bg-background/50 border border-primary/20 rounded-lg focus:outline-none focus:ring-2 focus:ring-primary/50 text-white placeholder:text-tertiary"
             disabled={loading}
           />
           {searchInput && (
             <button
               type="button"
               onClick={handleSearchClear}
-              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-muted-foreground hover:text-foreground transition-colors"
+              className="absolute right-3 top-1/2 transform -translate-y-1/2 text-tertiary hover:text-primary transition-colors"
               disabled={loading}
             >
               <X className="w-4 h-4" />
@@ -90,7 +90,7 @@ const LeaderboardFilters = ({
               variant="ghost"
               size="sm"
               onClick={handleClearAll}
-              className="text-muted-foreground hover:text-foreground"
+              className="text-tertiary hover:text-foreground transition-colors"
               disabled={loading}
             >
               Clear All
@@ -138,7 +138,7 @@ const LeaderboardFilters = ({
         <div className="mt-4 p-4 bg-background/30 border border-primary/20 rounded-lg">
           <div className="space-y-4">
             <div>
-              <label className="block text-sm font-medium mb-2 text-muted-foreground">
+              <label className="block text-sm font-medium mb-2 text-tertiary">
                 Time Period
               </label>
               <div className="flex flex-wrap gap-2">

@@ -80,7 +80,7 @@ const PlayerStats = ({
           <h4 className="font-semibold text-sm text-primary truncate">
             {player.playerName || "GUEST"}
           </h4>
-          <p className="text-xs text-muted-foreground truncate">
+          <p className="text-xs text-tertiary truncate">
             {formatScore(player.score)} pts
           </p>
         </div>
@@ -90,7 +90,7 @@ const PlayerStats = ({
             {formatScore(player.score)}
           </div>
           {player.bestTime && (
-            <div className="text-xs text-muted-foreground flex items-center gap-1">
+            <div className="text-xs text-tertiary flex items-center gap-1">
               <Clock className="w-3 h-3" />
               {formatTime(player.bestTime)}
             </div>
@@ -147,13 +147,13 @@ const PlayerStats = ({
               <h3 className="font-bold text-lg text-primary truncate mb-1">
                 {player.playerName || "GUEST"}
               </h3>
-              <p className="text-xs text-muted-60 uppercase tracking-tighter truncate mb-2">
+              <p className="text-xs text-inactive uppercase tracking-tighter truncate mb-2">
                 {player.email || "GUEST ACCOUNT"}
               </p>
               
               {/* Additional Stats */}
               {showDetailedStats && (
-                <div className="flex items-center gap-4 text-xs text-muted-foreground">
+                <div className="flex items-center gap-4 text-xs text-tertiary">
                   {player.gamesPlayed && (
                     <div className="flex items-center gap-1">
                       <Gamepad2 className="w-3 h-3" />
@@ -175,11 +175,11 @@ const PlayerStats = ({
               <div className="text-2xl font-black text-primary font-mono tracking-tighter">
                 {formatScore(player.score)}
               </div>
-              <div className="text-[10px] text-primary/40 uppercase font-medium mb-1">
+              <div className="text-[10px] text-inactive uppercase font-medium mb-1">
                 POINTS
               </div>
               {player.time && (
-                <div className="text-xs text-muted-foreground flex items-center gap-1 justify-end">
+                <div className="text-xs text-tertiary flex items-center gap-1 justify-end">
                   <Clock className="w-3 h-3" />
                   {formatTime(player.time)}
                 </div>

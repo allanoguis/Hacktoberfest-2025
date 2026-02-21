@@ -49,6 +49,11 @@ module.exports = {
           4: "hsl(var(--chart-4))",
           5: "hsl(var(--chart-5))",
         },
+        // Custom semantic colors for better contrast
+        "text-primary-secondary": "hsl(var(--text-primary-secondary))",
+        "text-tertiary": "hsl(var(--text-tertiary))",
+        "text-inactive": "hsl(var(--text-inactive))",
+        "text-subtle": "hsl(var(--text-subtle))",
       },
       keyframes: {
         gradient: {
