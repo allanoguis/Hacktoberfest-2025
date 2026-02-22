@@ -10,6 +10,8 @@ const guestAvatarUrl =
 export default function ProfilePage() {
   const { isLoaded, isSignedIn, user } = useUser();
 
+  console.log('Profile page: Clerk state', { isLoaded, isSignedIn, user, 'user.id:', user?.id, 'user.publicMetadata?.userId:', user?.publicMetadata?.userId });
+
   const uname = isLoaded && isSignedIn && user ? user.firstName : "Guest";
   const uemail =
     isLoaded && isSignedIn && user && user.emailAddresses.length > 0
@@ -36,12 +38,20 @@ export default function ProfilePage() {
       : guestAvatarUrl;
 
   const fetchProfileData = useCallback(async () => {
-    const targetUserId = user?.id || "000000";
-    console.log('Profile page: user?.id =', user?.id, '=> targetUserId:', targetUserId);
+    const targetUserId = user?.id || user?.publicMetadata?.userId || "000000";
+    console.log('Profile page: user?.id =', user?.id, 'user.publicMetadata?.userId =', user?.publicMetadata?.userId, '=> targetUserId:', targetUserId);
+    if (!targetUserId || targetUserId === "000000") {
+      console.warn('Profile page: user ID not available, skipping fetch');
+      return;
+    }
+
     try {
       setLoading(true);
       const response = await fetch(`/api/profile?userId=${targetUserId}`);
-      if (!response.ok) throw new Error('Failed to fetch profile data');
+      if (!response.ok) {
+        console.error('Profile fetch failed:', response.status, response.statusText);
+        throw new Error('Failed to fetch profile data');
+      }
       const data = await response.json();
       console.log('Profile page: fetched data', data);
 
@@ -49,13 +59,21 @@ export default function ProfilePage() {
         setHighscore(data.highScore || 0);
         setPastGames(data.pastGames || []);
         setUserProfile(data.user || null);
+      } else {
+        console.warn('Profile page: API returned no data, using fallbacks');
+        setHighscore(0);
+        setPastGames([]);
+        setUserProfile(null);
       }
     } catch (err) {
-      console.error("Error fetching profile data:", err);
+      console.error('Error fetching profile data:', err);
+      setHighscore(0);
+      setPastGames([]);
+      setUserProfile(null);
     } finally {
       setLoading(false);
     }
-  }, [user?.id]);
+  }, [user?.id, user?.publicMetadata?.userId]);
 
   useEffect(() => {
     if (!isLoaded) return;
@@ -64,9 +82,11 @@ export default function ProfilePage() {
       return;
     }
 
-    if (!isSignedIn) {
+    // For Guest or when Clerk not ready, fetch after a short delay
+    const timer = setTimeout(() => {
       fetchProfileData();
-    }
+    }, 500);
+    return () => clearTimeout(timer);
   }, [isLoaded, isSignedIn, user, fetchProfileData]);
 
   return (

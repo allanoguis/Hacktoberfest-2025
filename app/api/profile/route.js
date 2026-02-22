@@ -22,6 +22,7 @@ export async function GET(request) {
 
     try {
         const profileData = await GameService.getProfileData(userId);
+        console.log('Profile API returning data:', profileData);
         return NextResponse.json(profileData);
     } catch (error) {
         console.error('Error in profile route:', error);
