@@ -70,6 +70,7 @@ const nextConfig = {
     return config;
   },
   turbopack: {}, // Silence Turbopack warning; minimal config
+  generateEtags: false, // Bypass ETag caching to prevent digest mismatches
 };
 
 export default nextConfig;
