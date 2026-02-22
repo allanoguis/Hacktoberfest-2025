@@ -69,7 +69,7 @@ const nextConfig = {
     config.resolve.alias["@"] = path.resolve(".");
     return config;
   },
-  turbopack: {}, // Silence Turbopack warning; minimal config
+  // turbopack: {}, // Not used in Next.js 14
   generateEtags: false, // Bypass ETag caching to prevent digest mismatches
   // Force Vercel redeploy to pick up proxy.ts instead of stale _middleware.ts
 };
