@@ -10,7 +10,7 @@
 -- ===========================================
 
 -- Remove all game entries
-DELETE FROM games WHERE player_id != '000000';
+DELETE FROM games WHERE user_id != '000000';
 
 -- ===========================================
 -- DELETE ALL USERS (except Guest ID preservation)
@@ -26,7 +26,7 @@ DELETE FROM users WHERE user_id != '000000';
 -- Verify all games deleted (except potential Guest entries)
 SELECT 
     COUNT(*) as remaining_games,
-    COUNT(CASE WHEN player_id = '000000' THEN 1 END) as guest_games
+    COUNT(CASE WHEN user_id = '000000' THEN 1 END) as guest_games
 FROM games;
 
 -- Verify all users deleted (except Guest)
@@ -47,13 +47,13 @@ FROM users;
 -- If you want to remove specific test data instead of everything:
 
 -- Remove games for specific users
--- DELETE FROM games WHERE player_id IN ('user_001', 'user_002', 'user_003');
+-- DELETE FROM games WHERE user_id IN ('user_001', 'user_002', 'user_003');
 
 -- Remove specific users
 -- DELETE FROM users WHERE user_id IN ('user_001', 'user_002', 'user_003');
 
--- Remove games older than specific date
--- DELETE FROM games WHERE created_at < NOW() - INTERVAL '7 days' AND player_id != '000000';
+-- Delete games older than specific date
+-- DELETE FROM games WHERE created_at < NOW() - INTERVAL '7 days' AND user_id != '000000';
 
 -- ===========================================
 -- NOTES

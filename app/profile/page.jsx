@@ -145,9 +145,9 @@ export default function ProfilePage() {
                         className="hover:bg-primary/[0.02] transition-colors duration-300 antialiased"
                       >
                         <td className="px-6 py-4 md:py-6 text-xs md:text-sm font-medium text-primary/80">
-                          {new Date(game.time).toLocaleDateString()}
+                          {new Date(game.created_at).toLocaleDateString()}
                           <span className="block text-[10px] opacity-40 font-mono mt-0.5">
-                            {new Date(game.time).toLocaleTimeString()}
+                            {new Date(game.created_at).toLocaleTimeString()}
                           </span>
                         </td>
                         <td className="px-6 py-4 md:py-6">
@@ -157,7 +157,7 @@ export default function ProfilePage() {
                         </td>
                         <td className="px-6 py-4 md:py-6 text-right">
                           <span className="inline-block px-3 py-1 rounded-full bg-primary/5 text-[9px] md:text-[10px] font-bold text-primary/60 border border-primary/10 shadow-sm uppercase whitespace-nowrap">
-                            {game.deviceType || "Unknown"}
+                            {game.device_type || "Unknown"}
                           </span>
                         </td>
                       </tr>

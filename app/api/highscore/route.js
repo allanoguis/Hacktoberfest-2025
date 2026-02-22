@@ -19,9 +19,9 @@ export async function GET(request) {
         const topGame = {
             id: data.id,
             ...data,
-            player: data.player_id,
+            player: data.user_id,
             playerName: data.player_name,
-            time: data.time,
+            time: typeof data.time === 'string' ? (new Date(data.time).getTime() / 1000) : data.time,
             score: data.score
         };
 

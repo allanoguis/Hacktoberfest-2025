@@ -23,7 +23,7 @@ SELECT
     MAX(g.score) as highest_score,
     AVG(g.score) as average_score
 FROM users u
-JOIN games g ON u.user_id = g.player_id
+JOIN games g ON u.user_id = g.user_id
 WHERE u.user_id != '000000'
 GROUP BY 
     CASE 
@@ -40,8 +40,8 @@ GROUP BY
 -- Check total games (excluding Guest)
 SELECT 
     COUNT(*) as total_games,
-    COUNT(CASE WHEN player_id != '000000' THEN 1 END) as authenticated_games,
-    COUNT(CASE WHEN player_id = '000000' THEN 1 END) as guest_games
+    COUNT(CASE WHEN user_id != '000000' THEN 1 END) as authenticated_games,
+    COUNT(CASE WHEN user_id = '000000' THEN 1 END) as guest_games
 FROM games;
 
 -- Verify game distribution by score ranges
@@ -57,7 +57,7 @@ SELECT
     MIN(score) as min_score,
     MAX(score) as max_score
 FROM games
-WHERE player_id != '000000'
+WHERE user_id != '000000'
 GROUP BY 
     CASE 
         WHEN score >= 45000 THEN 'Expert (45k+)'
@@ -74,24 +74,24 @@ ORDER BY score_range DESC;
 -- Check time performance distribution
 SELECT 
     CASE 
-        WHEN time <= 30 THEN 'Lightning Fast (<30s)'
-        WHEN time <= 45 THEN 'Very Fast (30-45s)'
-        WHEN time <= 60 THEN 'Fast (45-60s)'
-        WHEN time <= 90 THEN 'Average (60-90s)'
+        WHEN EXTRACT(EPOCH FROM time) <= 30 THEN 'Lightning Fast (<30s)'
+        WHEN EXTRACT(EPOCH FROM time) <= 45 THEN 'Very Fast (30-45s)'
+        WHEN EXTRACT(EPOCH FROM time) <= 60 THEN 'Fast (45-60s)'
+        WHEN EXTRACT(EPOCH FROM time) <= 90 THEN 'Average (60-90s)'
         ELSE 'Slow (>90s)'
     END as time_category,
     COUNT(*) as game_count,
-    AVG(time) as avg_time,
-    MIN(time) as best_time,
-    MAX(time) as worst_time
+    AVG(EXTRACT(EPOCH FROM time)) as avg_time,
+    MIN(EXTRACT(EPOCH FROM time)) as best_time,
+    MAX(EXTRACT(EPOCH FROM time)) as worst_time
 FROM games
-WHERE player_id != '000000'
+WHERE user_id != '000000'
 GROUP BY 
     CASE 
-        WHEN time <= 30 THEN 'Lightning Fast (<30s)'
-        WHEN time <= 45 THEN 'Very Fast (30-45s)'
-        WHEN time <= 60 THEN 'Fast (45-60s)'
-        WHEN time <= 90 THEN 'Average (60-90s)'
+        WHEN EXTRACT(EPOCH FROM time) <= 30 THEN 'Lightning Fast (<30s)'
+        WHEN EXTRACT(EPOCH FROM time) <= 45 THEN 'Very Fast (30-45s)'
+        WHEN EXTRACT(EPOCH FROM time) <= 60 THEN 'Fast (45-60s)'
+        WHEN EXTRACT(EPOCH FROM time) <= 90 THEN 'Average (60-90s)'
         ELSE 'Slow (>90s)'
     END
 ORDER BY avg_time ASC;
@@ -104,9 +104,9 @@ ORDER BY avg_time ASC;
 SELECT 
     device_type,
     COUNT(*) as game_count,
-    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM games WHERE player_id != '000000'), 2) as percentage
+    ROUND(COUNT(*) * 100.0 / (SELECT COUNT(*) FROM games WHERE user_id != '000000'), 2) as percentage
 FROM games
-WHERE player_id != '000000'
+WHERE user_id != '000000'
 GROUP BY device_type
 ORDER BY game_count DESC;
 
@@ -116,33 +116,33 @@ ORDER BY game_count DESC;
 
 -- Top 10 players (should match leaderboard display)
 SELECT 
-    g.player_id,
+    g.user_id,
     u.fullname,
     u.email,
     MAX(g.score) as high_score,
-    MIN(g.time) as best_time,
+    MIN(EXTRACT(EPOCH FROM g.time)) as best_time,
     COUNT(g.id) as games_played,
     u.profile_image_url
 FROM games g
-JOIN users u ON g.player_id = u.user_id
-WHERE g.player_id != '000000'
-GROUP BY g.player_id, u.fullname, u.email, u.profile_image_url
+JOIN users u ON g.user_id = u.user_id
+WHERE g.user_id != '000000'
+GROUP BY g.user_id, u.fullname, u.email, u.profile_image_url
 ORDER BY high_score DESC, best_time ASC
 LIMIT 10;
 
 -- Verify no Guest entries in top results
 SELECT 'Guest entries in top 10: ' || 
-       CASE WHEN COUNT(CASE WHEN player_id = '000000' THEN 1 END) > 0 THEN 'YES - PROBLEM' ELSE 'NO - GOOD' END
+       CASE WHEN COUNT(CASE WHEN user_id = '000000' THEN 1 END) > 0 THEN 'YES - PROBLEM' ELSE 'NO - GOOD' END
 FROM (
     SELECT 
-        g.player_id,
+        g.user_id,
         u.fullname,
         MAX(g.score) as high_score,
         COUNT(g.id) as games_played
     FROM games g
-    JOIN users u ON g.player_id = u.user_id
-    WHERE g.player_id != '000000'
-    GROUP BY g.player_id, u.fullname
+    JOIN users u ON g.user_id = u.user_id
+    WHERE g.user_id != '000000'
+    GROUP BY g.user_id, u.fullname
     ORDER BY high_score DESC
     LIMIT 10
 ) top_players;
@@ -155,8 +155,8 @@ FROM (
 SELECT 'Orphaned games: ' || 
        CASE WHEN COUNT(*) > 0 THEN 'YES - PROBLEM' ELSE 'NO - GOOD' END
 FROM games g
-LEFT JOIN users u ON g.player_id = u.user_id
-WHERE u.user_id IS NULL AND g.player_id != '000000';
+LEFT JOIN users u ON g.user_id = u.user_id
+WHERE u.user_id IS NULL AND g.user_id != '000000';
 
 -- Check for users without games
 SELECT 
@@ -165,7 +165,7 @@ SELECT
     u.email,
     'No games played' as status
 FROM users u
-LEFT JOIN games g ON u.user_id = g.player_id
+LEFT JOIN games g ON u.user_id = g.user_id
 WHERE g.id IS NULL AND u.user_id != '000000';
 
 -- Verify email uniqueness

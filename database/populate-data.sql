@@ -31,58 +31,58 @@ INSERT INTO users (user_id, email, fullname, profile_image_url, created_at, last
 -- ===========================================
 
 -- Games for Pro Gamer One (Expert Level)
-INSERT INTO games (player_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
-('user_001', 'Pro Gamer One', 45000, 25.3, '192.168.1.100', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '1 day'),
-('user_001', 'Pro Gamer One', 42000, 28.7, '192.168.1.100', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '2 days'),
-('user_001', 'Pro Gamer One', 48500, 31.2, '192.168.1.100', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '3 days'),
+INSERT INTO games (user_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
+('user_001', 'Pro Gamer One', 45000, to_timestamp(25.3), '192.168.1.100', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '1 day'),
+('user_001', 'Pro Gamer One', 42000, to_timestamp(28.7), '192.168.1.100', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '2 days'),
+('user_001', 'Pro Gamer One', 48500, to_timestamp(31.2), '192.168.1.100', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '3 days'),
 
 -- Games for Speed Demon Two (Expert Level)
-INSERT INTO games (player_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
-('user_002', 'Speed Demon Two', 38000, 22.8, '192.168.1.101', 'desktop', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '2 days'),
-('user_002', 'Speed Demon Two', 41000, 19.5, '192.168.1.101', 'desktop', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '1 day'),
+INSERT INTO games (user_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
+('user_002', 'Speed Demon Two', 38000, to_timestamp(22.8), '192.168.1.101', 'desktop', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '2 days'),
+('user_002', 'Speed Demon Two', 41000, to_timestamp(19.5), '192.168.1.101', 'desktop', 'Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '1 day'),
 
 -- Games for High Scorer Three (Expert Level)
-INSERT INTO games (player_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
-('user_003', 'High Scorer Three', 52000, 35.6, '192.168.1.102', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '20 days'),
-('user_003', 'High Scorer Three', 47500, 42.1, '192.168.1.102', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '15 days'),
-('user_003', 'High Scorer Three', 55000, 28.9, '192.168.1.102', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '10 days'),
+INSERT INTO games (user_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
+('user_003', 'High Scorer Three', 52000, to_timestamp(35.6), '192.168.1.102', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '20 days'),
+('user_003', 'High Scorer Three', 47500, to_timestamp(42.1), '192.168.1.102', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '15 days'),
+('user_003', 'High Scorer Three', 55000, to_timestamp(28.9), '192.168.1.102', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '10 days'),
 
 -- Games for Advanced Player Four (Advanced Level)
-INSERT INTO games (player_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
-('user_004', 'Advanced Player Four', 28000, 58.3, '192.168.1.103', 'desktop', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '45 days'),
-('user_004', 'Advanced Player Four', 31000, 52.7, '192.168.1.103', 'desktop', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '30 days'),
+INSERT INTO games (user_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
+('user_004', 'Advanced Player Four', 28000, to_timestamp(58.3), '192.168.1.103', 'desktop', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '45 days'),
+('user_004', 'Advanced Player Four', 31000, to_timestamp(52.7), '192.168.1.103', 'desktop', 'Mozilla/5.0 (X11; Linux x86_64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '30 days'),
 
 -- Games for Strategic Master Five (Expert Level)
-INSERT INTO games (player_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
-('user_005', 'Strategic Master Five', 49000, 45.1, '192.168.1.104', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0', NOW() - INTERVAL '60 days'),
-('user_005', 'Strategic Master Five', 51500, 38.9, '192.168.1.104', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0', NOW() - INTERVAL '25 days'),
+INSERT INTO games (user_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
+('user_005', 'Strategic Master Five', 49000, to_timestamp(45.1), '192.168.1.104', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0', NOW() - INTERVAL '60 days'),
+('user_005', 'Strategic Master Five', 51500, to_timestamp(38.9), '192.168.1.104', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64; rv:91.0) Gecko/20100101 Firefox/91.0', NOW() - INTERVAL '25 days'),
 
 -- Games for Rising Star Six (Intermediate Level)
-INSERT INTO games (player_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
-('user_006', 'Rising Star Six', 18000, 68.4, '192.168.1.105', 'mobile', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '15 days'),
-('user_006', 'Rising Star Six', 19500, 71.2, '192.168.1.105', 'mobile', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '8 days'),
-('user_006', 'Rising Star Six', 21000, 62.1, '192.168.1.105', 'mobile', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '6 days'),
+INSERT INTO games (user_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
+('user_006', 'Rising Star Six', 18000, to_timestamp(68.4), '192.168.1.105', 'mobile', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '15 days'),
+('user_006', 'Rising Star Six', 19500, to_timestamp(71.2), '192.168.1.105', 'mobile', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '8 days'),
+('user_006', 'Rising Star Six', 21000, to_timestamp(62.1), '192.168.1.105', 'mobile', 'Mozilla/5.0 (iPhone; CPU iPhone OS 14_7_1 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '6 days'),
 
 -- Games for Consistent Player Seven (Intermediate Level)
-INSERT INTO games (player_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
-('user_007', 'Consistent Player Seven', 16000, 75.8, '192.168.1.106', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '18 days'),
-('user_007', 'Consistent Player Seven', 17500, 69.3, '192.168.1.106', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '4 days'),
+INSERT INTO games (user_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
+('user_007', 'Consistent Player Seven', 16000, to_timestamp(75.8), '192.168.1.106', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '18 days'),
+('user_007', 'Consistent Player Seven', 17500, to_timestamp(69.3), '192.168.1.106', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '4 days'),
 
 -- Games for Improving Eight (Intermediate to Advanced)
-INSERT INTO games (player_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
-('user_008', 'Improving Eight', 14000, 82.5, '192.168.1.107', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '10 days'),
-('user_008', 'Improving Eight', 15500, 78.1, '192.168.1.107', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '5 days'),
-('user_008', 'Improving Eight', 16800, 74.2, '192.168.1.107', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '2 days'),
+INSERT INTO games (user_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
+('user_008', 'Improving Eight', 14000, to_timestamp(82.5), '192.168.1.107', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '10 days'),
+('user_008', 'Improving Eight', 15500, to_timestamp(78.1), '192.168.1.107', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '5 days'),
+('user_008', 'Improving Eight', 16800, to_timestamp(74.2), '192.168.1.107', 'desktop', 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/91.0.4472.124 Safari/537.36', NOW() - INTERVAL '2 days'),
 
 -- Games for Casual Player Nine (Beginner Level)
-INSERT INTO games (player_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
-('user_009', 'Casual Player Nine', 3500, 95.7, '192.168.1.108', 'mobile', 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '7 days'),
-('user_009', 'Casual Player Nine', 4200, 88.3, '192.168.1.108', 'mobile', 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '3 days'),
+INSERT INTO games (user_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
+('user_009', 'Casual Player Nine', 3500, to_timestamp(95.7), '192.168.1.108', 'mobile', 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '7 days'),
+('user_009', 'Casual Player Nine', 4200, to_timestamp(88.3), '192.168.1.108', 'mobile', 'Mozilla/5.0 (iPhone; CPU iPhone OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '3 days'),
 
 -- Games for Newcomer Ten (Beginner Level)
-INSERT INTO games (player_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
-('user_010', 'Newcomer Ten', 2800, 120.5, '192.168.1.109', 'tablet', 'Mozilla/5.0 (iPad; CPU OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '3 days'),
-('user_010', 'Newcomer Ten', 3500, 105.8, '192.168.1.109', 'tablet', 'Mozilla/5.0 (iPad; CPU OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '1 day');
+INSERT INTO games (user_id, player_name, score, time, ip_address, device_type, user_agent, created_at) VALUES
+('user_010', 'Newcomer Ten', 2800, to_timestamp(120.5), '192.168.1.109', 'tablet', 'Mozilla/5.0 (iPad; CPU OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '3 days'),
+('user_010', 'Newcomer Ten', 3500, to_timestamp(105.8), '192.168.1.109', 'tablet', 'Mozilla/5.0 (iPad; CPU OS 15_0 like Mac OS X) AppleWebKit/605.1.15 (KHTML, like Gecko) Version/15.0 Mobile/15E148 Safari/604.1', NOW() - INTERVAL '1 day');
 
 -- ===========================================
 -- VERIFICATION QUERIES
@@ -98,7 +98,7 @@ SELECT
     MIN(g.time) as best_time,
     AVG(g.score) as average_score
 FROM users u 
-LEFT JOIN games g ON u.user_id = g.player_id 
+LEFT JOIN games g ON u.user_id = g.user_id 
 WHERE u.user_id != '000000'
 GROUP BY u.user_id, u.fullname, u.email
 ORDER BY high_score DESC, best_time ASC;
@@ -106,6 +106,6 @@ ORDER BY high_score DESC, best_time ASC;
 -- Check that no Guest entries exist in populated data
 SELECT COUNT(*) as guest_entries 
 FROM games 
-WHERE player_id = '000000';
+WHERE user_id = '000000';
 
 -- Expected: 0 guest entries
