@@ -71,6 +71,7 @@ const nextConfig = {
   },
   turbopack: {}, // Silence Turbopack warning; minimal config
   generateEtags: false, // Bypass ETag caching to prevent digest mismatches
+  // Force Vercel redeploy to pick up proxy.ts instead of stale _middleware.ts
 };
 
 export default nextConfig;
