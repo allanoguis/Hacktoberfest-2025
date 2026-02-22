@@ -64,18 +64,7 @@ export async function GET(request) {
                     timeFilter,
                     search,
                     applied: search || timeFilter !== 'all'
-                },
-                ...(process.env.NODE_ENV === 'development'
-                    ? {
-                          debug: {
-                              supabaseUrl: process.env.SUPABASE_URL || process.env.NEXT_PUBLIC_SUPABASE_URL || null,
-                              hasServiceRoleKey: Boolean(process.env.SUPABASE_SERVICE_ROLE_KEY),
-                              page,
-                              limit,
-                              offset
-                          }
-                      }
-                    : {})
+                }
             }
         });
     } catch (error) {
