@@ -82,7 +82,7 @@ const PlayerStats = ({
         
         <div className="flex-grow min-w-0">
           <h4 className="font-semibold text-sm text-primary truncate">
-            {player.playerName || "GUEST"}
+            {player.player_name || "GUEST"}
           </h4>
           <p className="text-xs text-tertiary truncate">
             {formatScore(player.score)} pts
@@ -153,7 +153,7 @@ const PlayerStats = ({
             {/* Player Info */}
             <div className="flex-grow min-w-0">
               <h3 className="font-bold text-lg text-primary truncate mb-1">
-                {player.playerName || "GUEST"}
+                {player.player_name || "GUEST"}
               </h3>
               <p className="text-xs text-inactive uppercase tracking-tighter truncate mb-2">
                 {player.email || "GUEST ACCOUNT"}
