@@ -108,10 +108,10 @@ const PlayerStats = ({
     <div className="group">
       <div className="flex items-center gap-2 mb-2">
         {getRankBadge(rank)}
-        {player.gamesPlayed && (
+        {player.games_played && (
           <Badge variant="outline" className="text-xs">
             <Gamepad2 className="w-3 h-3 mr-1" />
-            {player.gamesPlayed} games
+            {player.games_played} games
           </Badge>
         )}
       </div>
@@ -162,10 +162,10 @@ const PlayerStats = ({
               {/* Additional Stats */}
               {showDetailedStats && (
                 <div className="flex items-center gap-4 text-xs text-tertiary">
-                  {player.gamesPlayed && (
+                  {player.games_played && (
                     <div className="flex items-center gap-1">
                       <Gamepad2 className="w-3 h-3" />
-                      <span>{player.gamesPlayed} games</span>
+                      <span>{player.games_played} games</span>
                     </div>
                   )}
                   {player.bestTime && (
