@@ -46,7 +46,9 @@ export default function ProfilePage() {
   const fetchProfileData = useCallback(async () => {
     const targetUserId = user?.id || user?.publicMetadata?.userId || "000000";
     console.log("Profile page: user?.id =", user?.id, "user.publicMetadata?.userId =", user?.publicMetadata?.userId, "=> targetUserId:", targetUserId);
-    if (!targetUserId || targetUserId === "000000") {
+    
+    // Always fetch data, including for Guest users (userId=000000)
+    if (!targetUserId) {
       console.warn("Profile page: user ID not available, skipping fetch");
       return;
     }
@@ -83,16 +85,9 @@ export default function ProfilePage() {
 
   useEffect(() => {
     if (!isLoaded) return;
-    if (isSignedIn && user) {
-      fetchProfileData();
-      return;
-    }
-
-    // For Guest or when Clerk not ready, fetch after a short delay
-    const timer = setTimeout(() => {
-      fetchProfileData();
-    }, 500);
-    return () => clearTimeout(timer);
+    
+    // Always fetch profile data for both signed-in and Guest users
+    fetchProfileData();
   }, [isLoaded, isSignedIn, user, fetchProfileData]);
 
   return (
