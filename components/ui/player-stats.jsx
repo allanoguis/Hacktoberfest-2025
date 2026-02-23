@@ -64,17 +64,17 @@ const PlayerStats = ({
         
         <div className="flex-shrink-0 relative w-10 h-10">
           <Image
-            src={player.profileImageUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.playerName || 'Guest'}`}
-            alt={player.playerName}
+            src={player.profile_image_url || `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.player_name || 'Guest'}`}
+            alt={player.player_name}
             width={40}
             height={40}
             className="w-full h-full rounded-full border-2 border-primary/20 object-cover"
             onError={(e) => {
-              console.log('Avatar load error for player:', player.playerName, 'URL:', e.target.src);
-              e.target.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.playerName || 'Guest'}`;
+              console.log('Avatar load error for player:', player.player_name, 'URL:', player.profile_image_url);
+              e.target.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.player_name || 'Guest'}`;
             }}
             onLoad={() => {
-              console.log('Avatar loaded successfully for player:', player.playerName, 'URL:', player.profileImageUrl);
+              console.log('Avatar loaded successfully for player:', player.player_name, 'URL:', player.profile_image_url);
             }}
             unoptimized
           />
@@ -131,17 +131,17 @@ const PlayerStats = ({
             {/* Player Avatar */}
             <div className="flex-shrink-0 relative w-14 h-14">
               <Image
-                src={player.profileImageUrl || `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.playerName || 'Guest'}`}
-                alt={player.playerName}
+                src={player.profile_image_url || `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.player_name || 'Guest'}`}
+                alt={player.player_name}
                 width={56}
                 height={56}
                 className="w-full h-full rounded-full border-2 border-primary/20 object-cover ring-2 ring-primary/10 group-hover:ring-primary/30 transition-all"
                 onError={(e) => {
-                  console.log('Avatar load error for player:', player.playerName, 'URL:', e.target.src);
-                  e.target.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.playerName || 'Guest'}`;
+                  console.log('Avatar load error for player:', player.player_name, 'URL:', player.profile_image_url);
+                  e.target.src = `https://api.dicebear.com/7.x/avataaars/svg?seed=${player.player_name || 'Guest'}`;
                 }}
                 onLoad={() => {
-                  console.log('Avatar loaded successfully for player:', player.playerName, 'URL:', player.profileImageUrl);
+                  console.log('Avatar loaded successfully for player:', player.player_name, 'URL:', player.profile_image_url);
                 }}
                 unoptimized
               />
