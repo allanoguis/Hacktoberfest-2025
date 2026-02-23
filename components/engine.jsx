@@ -348,6 +348,7 @@ export default function Engine() {
     if (gameOver) {
       isSavingRef.current = false;
       setScore(0);
+      scoreRef.current = 0; // Reset the ref used in game loop
       setGround(GROUND);
       setGameOver(false);
       setGameStarted(false);
