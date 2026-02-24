@@ -1,8 +1,6 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/allanoguis/gojirun) ![GitHub contributors](https://img.shields.io/github/contributors/allanoguis/gojirun) ![GitHub repo size](https://img.shields.io/github/repo-size/allanoguis/gojirun) ![GitHub Repo stars](https://img.shields.io/github/stars/allanoguis/gojirun) ![GitHub forks](https://img.shields.io/github/forks/allanoguis/gojirun)
 
-![light](https://github.com/user-attachments/assets/34cdd661-bc70-48fe-8ca2-d7d44c0e74e3)
-
-![dark](https://github.com/user-attachments/assets/b5e9be7b-9183-4c90-b7af-f2f058539dfa)
+<img src="assets/images/branding/Preview.jpg" width="auto" loading="lazy" alt="Gojirun Game"/>
 
 ## 🚀Featured In
 
@@ -14,50 +12,14 @@
       <th>Event Description</th>
    </tr>
     <tr>
-      <td><img src="Hack.jpg" width="200" height="auto" loading="lazy" alt="Hacktoberfest 2025"/></td>
-      <td>Hacktoberfest 2025</td>
+      <td><img src="assets/images/branding/Hack.jpg" width="200" height="auto" loading="lazy" alt="Hacktoberfest 2025"/></td>
+      <td>Hacktoberfest '24</td>
       <td>Hacktoberfest is a month-long celebration of open source software run by DigitalOcean, GitHub, and Twilio. It encourages contributions to open source projects and promotes a global community of developers.</td>
    </tr>
 
 </table>
 
 <br />
-
-# Table of Contents
-
-1. [Featured In](#featured-in)
-2. [Hacktoberfest 2025](#hacktoberfest-2025)
-3. [Event Date](#-event-date)
-4. [How to Participate?](#-how-to-participate)
-5. [Project: Gojirun](#project-gojirun)
-6. [How to Contribute](#how-to-contribute)
-7. [Avoid Conflicts {Syncing your fork}](#avoid-conflicts-syncing-your-fork)
-8. [Contributors](#contributors)
-9. [Forkers](#forkers)
-10. [Share Your Thoughts!](#share-your-thoughts)
-11. [License](#license)
-12. [Acknowledgments](#acknowledgments)
-
-# Hacktoberfest 2025
-
-Hacktoberfest is all about celebrating open source, giving back to the community, and growing your coding skills.
-
-## 📅 Event Date: October 1st - October 31st, 2025
-
-## 🔥 How to Participate?
-
-Sign up for Hacktoberfest: Head over to the Official Hacktoberfest website and register with your GitHub account before the 30th of October.
-Start Contributing: Feel free to contribute to this project. Keep things clean and organized.
----
-
-![image](https://github.com/user-attachments/assets/557c1c1e-d143-44c0-817a-ab124fef9151)
-
-## Project: Gojirun
-
-Gojirun is a 2D platformer game inspired by the classic "T-Rex Run" offline game in Chrome. The game is made with SVG assets built in NextJS. 
-This project started as a Hacktoberfest submission in October of '24.
-
----
 
 ## How to contribute
 
@@ -93,19 +55,17 @@ A heartfelt thank you to the following individuals for their valuable contributi
 
 <br>
 
-<<<<<<< HEAD
-## Forkers
-<div align='center'>
-
-[![Forkers repo roster for @allanoguis/gojirun](https://reporoster.com/forks/allanoguis/gojirun)](https://github.com/allanoguis/gojirun/network/members)
-
-</div>
-
-=======
->>>>>>> 2b77e83305664c6e297fb367bc2e45f784bc2748
 ## Share Your Thoughts!
 
 We’d love to hear your thoughts! If you have any ideas, or feedback, or even want to let us know how we’re doing, feel free to open an issue or drop us a message. Your feedback is greatly appreciated and helps improve the project!
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
+
+## Acknowledgments
+
+We will create a section on the website to acknowledge the contributions to the making of Gojirun.
 
 ---
 
@@ -114,11 +74,3 @@ We’d love to hear your thoughts! If you have any ideas, or feedback, or even w
         <img src="https://img.shields.io/badge/Back%20to%20Top-000000?style=for-the-badge&logo=github&logoColor=white" alt="Back to Top">
     </a>
 </div>
-
-## License
-
-This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md) file for details.
-
-## Acknowledgments
-
-We will create a section on the website to acknowledge the contributions in the making of Gojirun.
