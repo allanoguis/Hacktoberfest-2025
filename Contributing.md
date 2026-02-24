@@ -10,7 +10,7 @@ Thank you for considering contributing to our project! We appreciate your help i
 
 ### Check the Announcement from the Discussions
 
-[Announcement](https://github.com/allanoguis/Hacktoberfest-2024/discussions/27)
+[Announcement](https://github.com/allanoguis/gojirun/discussions/27)
 
 ### **Fork the repository** Click on the "Fork" button at the top right of the page
 

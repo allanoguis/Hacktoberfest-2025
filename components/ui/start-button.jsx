@@ -18,7 +18,7 @@ const StartButton = ({
       className={cn(
         "relative cursor-pointer py-4 px-8 text-center font-barlow inline-flex justify-center text-base uppercase text-white rounded-lg border-solid transition-all duration-500 ease-out group outline-offset-4 focus:outline focus:outline-2 focus:outline-white focus:outline-offset-4 overflow-hidden",
         "bg-gradient-to-r from-emerald-500 via-teal-500 to-cyan-600",
-        "shadow-lg shadow-emerald-500/50",
+        "shadow-lg shadow-emerald-500/50 transition-shadow duration-2000 ease-out",
         "hover:shadow-2xl hover:shadow-emerald-500/60 hover:shadow-cyan-500/40",
         "hover:scale-105 active:scale-95",
         "border-2 border-emerald-400/50",

@@ -1,4 +1,4 @@
-![GitHub commit activity](https://img.shields.io/github/commit-activity/t/allanoguis/hacktoberfest-2025) ![GitHub contributors](https://img.shields.io/github/contributors/allanoguis/hacktoberfest-2025) ![GitHub repo size](https://img.shields.io/github/repo-size/allanoguis/hacktoberfest-2025) ![GitHub Repo stars](https://img.shields.io/github/stars/allanoguis/hacktoberfest-2025) ![GitHub forks](https://img.shields.io/github/forks/allanoguis/hacktoberfest-2025)
+![GitHub commit activity](https://img.shields.io/github/commit-activity/t/allanoguis/gojirun) ![GitHub contributors](https://img.shields.io/github/contributors/allanoguis/gojirun) ![GitHub repo size](https://img.shields.io/github/repo-size/allanoguis/gojirun) ![GitHub Repo stars](https://img.shields.io/github/stars/allanoguis/gojirun) ![GitHub forks](https://img.shields.io/github/forks/allanoguis/gojirun)
 
 ![light](https://github.com/user-attachments/assets/34cdd661-bc70-48fe-8ca2-d7d44c0e74e3)
 
@@ -70,7 +70,7 @@ Read more:
 
 An easy way to avoid conflicts is to add an 'upstream' for your git repo, as other PRs may be merged while you're working on your branch/fork.
 
-git remote add upstream <https://github.com/allanoguis/hacktoberfest-2025>
+git remote add upstream <https://github.com/allanoguis/gojirun>
 You can verify that the new remote has been added by typing:
 
 git remote -v
@@ -87,8 +87,8 @@ For more information on syncing forks, read this article from GitHub.
 
 A heartfelt thank you to the following individuals for their valuable contributions to this project. Your support and dedication are greatly appreciated:
 
-<a href="https://github.com/allanoguis/Hacktoberfest-2025/graphs/contributors">
-  <img src="https://contrib.rocks/image?repo=allanoguis/Hacktoberfest-2025" />
+<a href="https://github.com/allanoguis/gojirun/graphs/contributors">
+  <img src="https://contrib.rocks/image?repo=allanoguis/gojirun" />
 </a>
 
 <br>
@@ -96,7 +96,7 @@ A heartfelt thank you to the following individuals for their valuable contributi
 ## Forkers
 <div align='center'>
 
-[![Forkers repo roster for @allanoguis/Hacktoberfest-2025](https://reporoster.com/forks/allanoguis/Hacktoberfest-2025)](https://github.com/allanoguis/Hacktoberfest-2025/network/members)
+[![Forkers repo roster for @allanoguis/gojirun](https://reporoster.com/forks/allanoguis/gojirun)](https://github.com/allanoguis/gojirun/network/members)
 
 </div>
 
