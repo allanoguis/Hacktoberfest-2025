@@ -47,15 +47,15 @@ Hacktoberfest is all about celebrating open source, giving back to the community
 ## 🔥 How to Participate?
 
 Sign up for Hacktoberfest: Head over to the Official Hacktoberfest website and register with your GitHub account before the 30th of October.
-Start Contributing: Feel free to contribute any quality code as long as it works! You must make sure to keep things organized.
-
+Start Contributing: Feel free to contribute to this project. Keep things clean and organized.
 ---
 
 ![image](https://github.com/user-attachments/assets/557c1c1e-d143-44c0-817a-ab124fef9151)
 
 ## Project: Gojirun
 
-Gojirun is a 2D platformer game inspired by the classic T-Rex run from Chrome. The game is made with SVG assets built in React JS. This project is dedicated to Hacktoberfest 2025 and all its contributors.
+Gojirun is a 2D platformer game inspired by the classic "T-Rex Run" offline game in Chrome. The game is made with SVG assets built in NextJS. 
+This project started as a Hacktoberfest submission in October of '24.
 
 ---
 
@@ -93,6 +93,7 @@ A heartfelt thank you to the following individuals for their valuable contributi
 
 <br>
 
+<<<<<<< HEAD
 ## Forkers
 <div align='center'>
 
@@ -100,12 +101,13 @@ A heartfelt thank you to the following individuals for their valuable contributi
 
 </div>
 
+=======
+>>>>>>> 2b77e83305664c6e297fb367bc2e45f784bc2748
 ## Share Your Thoughts!
 
-We’d love to hear your thoughts! If you have any ideas, or feedback, or even just want to let us know how we’re doing, feel free to open an issue or drop us a message. Your feedback is greatly appreciated and helps improve the project!
+We’d love to hear your thoughts! If you have any ideas, or feedback, or even want to let us know how we’re doing, feel free to open an issue or drop us a message. Your feedback is greatly appreciated and helps improve the project!
 
 ---
-
 
 <div align="center">
     <a href="#top">
