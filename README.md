@@ -14,7 +14,7 @@
       <th>Event Description</th>
    </tr>
     <tr>
-      <td><img src="Hack.jpg" width="200" height="auto" loading="lazy" alt="Hacktoberfest 2025"/></td>
+      <td><img src="assets/images/branding/Hack.jpg" width="200" height="auto" loading="lazy" alt="Hacktoberfest 2025"/></td>
       <td>Hacktoberfest 2025</td>
       <td>Hacktoberfest is a month-long celebration of open source software run by DigitalOcean, GitHub, and Twilio. It encourages contributions to open source projects and promotes a global community of developers.</td>
    </tr>
@@ -93,16 +93,6 @@ A heartfelt thank you to the following individuals for their valuable contributi
 
 <br>
 
-<<<<<<< HEAD
-## Forkers
-<div align='center'>
-
-[![Forkers repo roster for @allanoguis/gojirun](https://reporoster.com/forks/allanoguis/gojirun)](https://github.com/allanoguis/gojirun/network/members)
-
-</div>
-
-=======
->>>>>>> 2b77e83305664c6e297fb367bc2e45f784bc2748
 ## Share Your Thoughts!
 
 We’d love to hear your thoughts! If you have any ideas, or feedback, or even want to let us know how we’re doing, feel free to open an issue or drop us a message. Your feedback is greatly appreciated and helps improve the project!
@@ -121,4 +111,4 @@ This project is licensed under the MIT License - see the [LICENSE.md](LICENSE.md
 
 ## Acknowledgments
 
-We will create a section on the website to acknowledge the contributions in the making of Gojirun.
+We will create a section on the website to acknowledge the contributions to the making of Gojirun.
