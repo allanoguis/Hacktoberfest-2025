@@ -1,7 +1,7 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/allanoguis/gojirun) ![GitHub contributors](https://img.shields.io/github/contributors/allanoguis/gojirun) ![GitHub repo size](https://img.shields.io/github/repo-size/allanoguis/gojirun) ![GitHub Repo stars](https://img.shields.io/github/stars/allanoguis/gojirun) ![GitHub forks](https://img.shields.io/github/forks/allanoguis/gojirun)
 
 <img src="assets/images/branding/Preview.jpg" width="auto" loading="lazy" alt="Gojirun Game"/>
-
+<img src="assets/images/branding/Mobile Preview.jpg" width="auto" loading="lazy" alt="Gojirun Game"/>
 ## 🚀Featured In
 
 <table>
