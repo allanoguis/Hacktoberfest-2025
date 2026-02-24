@@ -1,6 +1,6 @@
 ![GitHub commit activity](https://img.shields.io/github/commit-activity/t/allanoguis/gojirun) ![GitHub contributors](https://img.shields.io/github/contributors/allanoguis/gojirun) ![GitHub repo size](https://img.shields.io/github/repo-size/allanoguis/gojirun) ![GitHub Repo stars](https://img.shields.io/github/stars/allanoguis/gojirun) ![GitHub forks](https://img.shields.io/github/forks/allanoguis/gojirun)
 
-<img src="assets/images/branding/Hack.jpg" width="auto" loading="lazy" alt="Gojirun Game"/>
+<img src="assets/images/branding/Preview.jpg" width="auto" loading="lazy" alt="Gojirun Game"/>
 
 ## 🚀Featured In
 
@@ -20,21 +20,6 @@
 </table>
 
 <br />
-
-# Table of Contents
-
-1. [Featured In](#featured-in)
-2. [Hacktoberfest 2025](#hacktoberfest-2025)
-3. [Event Date](#-event-date)
-4. [How to Participate?](#-how-to-participate)
-5. [Project: Gojirun](#project-gojirun)
-6. [How to Contribute](#how-to-contribute)
-7. [Avoid Conflicts {Syncing your fork}](#avoid-conflicts-syncing-your-fork)
-8. [Contributors](#contributors)
-9. [Forkers](#forkers)
-10. [Share Your Thoughts!](#share-your-thoughts)
-11. [License](#license)
-12. [Acknowledgments](#acknowledgments)
 
 ## How to contribute
 
