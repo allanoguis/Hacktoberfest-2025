@@ -62,11 +62,15 @@ export const Leaderboard = () => {
   }, [filters]);
 
   // Handle real-time leaderboard updates
-  const handleRealtimeUpdate = useCallback(({ type, payload }) => {
-    console.log('Leaderboard event', type, payload);
+  const handleRealtimeUpdate = useCallback((payload) => {
+    console.log('Leaderboard event received:', payload);
     
-    // Refresh the current page data when changes occur
-    fetchLeaderboard(pagination.currentPage, false);
+    // The new payload structure: { op: 'INSERT'|'UPDATE'|'DELETE', table: 'games', new: {...}|null, old: {...}|null }
+    if (payload && (payload.op === 'INSERT' || payload.op === 'UPDATE' || payload.op === 'DELETE')) {
+      console.log(`Leaderboard ${payload.op} operation detected, refreshing data...`);
+      // Refresh the current page data when changes occur
+      fetchLeaderboard(pagination.currentPage, false);
+    }
   }, [pagination.currentPage, fetchLeaderboard]);
 
   // Set up real-time subscription
@@ -193,7 +197,7 @@ export const Leaderboard = () => {
         <ul className="flex flex-col gap-4 w-full max-w-2xl px-4 pb-8">
           {leaderboardData.length > 0 ? (
             leaderboardData.map((player, index) => (
-              <li key={`${player.playerId || index}-${index}`} className="w-full">
+              <li key={`${player.player_id || index}-${index}`} className="w-full">
                 <PlayerStats
                   player={player}
                   rank={(pagination.currentPage - 1) * 10 + index}

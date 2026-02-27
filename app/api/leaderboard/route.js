@@ -16,55 +16,68 @@ export async function GET(request) {
         const timeFilter = searchParams.get('timeFilter') || 'all'; // all, month, week
         const search = searchParams.get('search') || '';
 
-        // Get leaderboard data from optimized view
-        let query = supabaseAdmin
-            .from('leaderboard_view')
+        // Simple approach: Get all games and group by player to get max scores
+        const { data: allGames, error: gamesError } = await supabaseAdmin
+            .from('games')
             .select('*')
             .order('score', { ascending: false });
 
-        // Apply search filter at database level
-        if (search) {
-            query = query.or(`player_name.ilike.%${search}%,email.ilike.%${search}%`);
-        }
+        if (gamesError) throw gamesError;
 
-        // Apply time filter at database level
-        if (timeFilter !== 'all') {
-            const now = new Date();
-            let filterDate;
+        // Group by player and get max score for each player
+        const playerMaxScores = {};
+        const playerGameCounts = {};
+        const playerBestTimes = {};
+
+        allGames.forEach(game => {
+            const playerName = game.player_name;
             
-            if (timeFilter === 'month') {
-                filterDate = new Date(now.getFullYear(), now.getMonth() - 1, now.getDate());
-            } else if (timeFilter === 'week') {
-                filterDate = new Date(now.getTime() - (7 * 24 * 60 * 60 * 1000));
+            // Track max score
+            if (!playerMaxScores[playerName] || game.score > playerMaxScores[playerName].score) {
+                playerMaxScores[playerName] = game;
             }
             
-            if (filterDate) {
-                // Note: This would require adding created_at to the view for proper filtering
-                // For now, we'll keep the existing client-side filtering as fallback
+            // Count games
+            playerGameCounts[playerName] = (playerGameCounts[playerName] || 0) + 1;
+            
+            // Track best time (lowest time)
+            if (!playerBestTimes[playerName] || game.time < playerBestTimes[playerName]) {
+                playerBestTimes[playerName] = game.time;
             }
+        });
+
+        // Convert to leaderboard format
+        let leaderboard = Object.values(playerMaxScores).map(game => ({
+            player_id: game.user_id,
+            email: game.user?.email || 'guest@gojirun.local',
+            player_name: game.player_name,
+            profile_image_url: game.user?.profile_image_url || `https://api.dicebear.com/7.x/avataaars/png?seed=${game.player_name}&size=200`,
+            score: game.score,
+            best_time: playerBestTimes[game.player_name],
+            games_played: playerGameCounts[game.player_name]
+        }));
+
+        // Apply search filter
+        if (search) {
+            leaderboard = leaderboard.filter(player => 
+                player.player_name?.toLowerCase().includes(search.toLowerCase()) ||
+                player.email?.toLowerCase().includes(search.toLowerCase())
+            );
         }
 
         // Apply pagination
-        const { data: leaderboard, error } = await query
-            .range(offset, offset + limit - 1);
-
-        if (error) throw error;
-
-        // Get total count for pagination
-        const { count } = await supabaseAdmin
-            .from('leaderboard_view')
-            .select('*', { count: 'exact', head: true });
+        const paginatedLeaderboard = leaderboard.slice(offset, offset + limit);
 
         return NextResponse.json({
             success: true,
             data: {
-                leaderboard: leaderboard || [],
+                leaderboard: paginatedLeaderboard,
                 pagination: {
-                    total: count || 0,
+                    total: leaderboard.length,
                     page,
                     limit,
-                    hasMore: (leaderboard?.length || 0) === limit,
-                    hasNext: (offset + limit) < (count || 0)
+                    hasMore: paginatedLeaderboard.length === limit,
+                    hasNext: (offset + limit) < leaderboard.length
                 },
                 filters: {
                     timeFilter,
