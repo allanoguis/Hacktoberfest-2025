@@ -55,6 +55,7 @@ export default function Engine() {
   const [isSaving, setIsSaving] = useState(false);
   const [saveMessage, setSaveMessage] = useState("");
   const [gameStartTime, setGameStartTime] = useState(null);
+  const [hasSavedSuccessfully, setHasSavedSuccessfully] = useState(false);
 
   // Refs for high-frequency game logic (avoids re-renders)
   const obstacleRef = useRef(GAME_WIDTH);
@@ -154,6 +155,7 @@ export default function Engine() {
         await saveGame(data);
         console.log("✅ Game saved successfully:", { player: data.player, score: data.score, time: data.time });
         setSaveMessage("SAVED!");
+        setHasSavedSuccessfully(true);
         setTimeout(() => setSaveMessage(""), 3000);
       } catch (error) {
         console.error("❌ Error saving game data:", error.message);
@@ -352,6 +354,7 @@ export default function Engine() {
       setGround(GROUND);
       setGameOver(false);
       setGameStarted(false);
+      setHasSavedSuccessfully(false);
       // Reset tank position to spawn point
       obstacleRef.current = GAME_WIDTH;
       return;
@@ -360,6 +363,7 @@ export default function Engine() {
     // If starting from Idle screen, set started to true and record start time
     setGameStartTime(Date.now());
     setGameStarted(true);
+    setHasSavedSuccessfully(false);
   };
 
   const handleManualSave = async () => {
@@ -419,13 +423,15 @@ export default function Engine() {
               </span>
             )}
           </div>
-          <button
-            onClick={handleManualSave}
-            disabled={isSaving || score === 0}
-            className="px-3 md:px-4 py-1 bg-primary text-secondary text-sm md:text-xl font-bold rounded-md hover:bg-red-600 hover:text-white transition-all disabled:opacity-50 antialiased shadow-sm whitespace-nowrap"
-          >
-            {isSaving ? "SAVING..." : "SAVE SCORE"}
-          </button>
+          {!hasSavedSuccessfully && (
+            <button
+              onClick={handleManualSave}
+              disabled={isSaving || score === 0}
+              className="px-3 md:px-4 py-1 bg-primary text-secondary text-sm md:text-xl font-bold rounded-md hover:bg-red-600 hover:text-white transition-all disabled:opacity-50 antialiased shadow-sm whitespace-nowrap"
+            >
+              {isSaving ? "SAVING..." : "SAVE SCORE"}
+            </button>
+          )}
         </div>
       </div>
 
