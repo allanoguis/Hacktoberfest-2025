@@ -3,6 +3,12 @@ import { ThemeProvider } from "next-themes";
 import { ClerkProvider } from "@clerk/nextjs";
 import Navigation from "../components/navigation";
 import UserProfileSync from "../components/user-profile-sync";
+import { setupAutoCleanup } from "../lib/supabase-realtime";
+
+// Set up auto-cleanup for real-time subscriptions
+if (typeof window !== 'undefined') {
+  setupAutoCleanup();
+}
 
 export const metadata = {
   author: "Allan Oguis",

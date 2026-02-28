@@ -73,22 +73,32 @@ export const Leaderboard = () => {
     }
   }, [pagination.currentPage, fetchLeaderboard]);
 
-  // Set up real-time subscription
+  // Set up real-time subscription with proper cleanup
   useEffect(() => {
     let unsubscribe;
     
     const setupRealtime = async () => {
-      unsubscribe = await subscribeToLeaderboard(handleRealtimeUpdate);
-      if (unsubscribe) {
-        setRealtimeEnabled(true);
+      try {
+        unsubscribe = await subscribeToLeaderboard(handleRealtimeUpdate);
+        if (unsubscribe) {
+          setRealtimeEnabled(true);
+          console.log('[Leaderboard] Real-time subscription enabled');
+        } else {
+          console.warn('[Leaderboard] Failed to enable real-time subscription');
+        }
+      } catch (error) {
+        console.error('[Leaderboard] Error setting up real-time:', error);
       }
     };
     
     setupRealtime();
     
+    // Cleanup function - called on component unmount
     return () => {
       if (unsubscribe) {
+        console.log('[Leaderboard] Cleaning up real-time subscription');
         unsubscribe();
+        setRealtimeEnabled(false);
       }
     };
   }, [handleRealtimeUpdate]);

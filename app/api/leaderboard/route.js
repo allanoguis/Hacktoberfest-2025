@@ -5,6 +5,13 @@ export const dynamic = 'force-dynamic';
 
 export async function GET(request) {
     try {
+        // Add cache-busting headers
+        const headers = new Headers({
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+        });
+
         const { searchParams } = new URL(request.url);
         
         // Parse pagination parameters with defaults
@@ -16,15 +23,15 @@ export async function GET(request) {
         const timeFilter = searchParams.get('timeFilter') || 'all'; // all, month, week
         const search = searchParams.get('search') || '';
 
-        // Simple approach: Get all games and group by player to get max scores
+        // Simple approach: Get all games and group by player to// Get all games for aggregation
         const { data: allGames, error: gamesError } = await supabaseAdmin
             .from('games')
             .select('*')
-            .order('score', { ascending: false });
+            .order('created_at', { ascending: false });
 
         if (gamesError) throw gamesError;
 
-        // Group by player and get max score for each player
+        // Aggregate data by player
         const playerMaxScores = {};
         const playerGameCounts = {};
         const playerBestTimes = {};
@@ -77,6 +84,9 @@ export async function GET(request) {
             };
         });
 
+        // Sort by score in descending order (highest scores first)
+        leaderboard.sort((a, b) => b.score - a.score);
+
         // Apply search filter
         if (search) {
             leaderboard = leaderboard.filter(player => 
@@ -105,7 +115,7 @@ export async function GET(request) {
                     applied: search || timeFilter !== 'all'
                 }
             }
-        });
+        }, { headers });
     } catch (error) {
         console.error('Error in leaderboard route:', error);
         return NextResponse.json({ 

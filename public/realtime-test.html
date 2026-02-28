@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Real-time Test</title>
+    <script src="https://cdn.jsdelivr.net/npm/@supabase/supabase-js@2"></script>
+</head>
+<body>
+    <h1>Real-time Leaderboard Test</h1>
+    <div id="status">Connecting...</div>
+    <div id="events"></div>
+    
+    <script>
+        const SUPABASE_URL = 'https://your-project.supabase.co';
+        const SUPABASE_KEY = 'your-anon-key';
+        
+        const supabase = createClient(SUPABASE_URL, SUPABASE_KEY);
+
+        async function testRealtime() {
+            const statusEl = document.getElementById('status');
+            const eventsEl = document.getElementById('events');
+            
+            try {
+                // Subscribe to public:leaderboard channel
+                const channel = supabase.channel('public:leaderboard', {
+                    config: {
+                        private: false,
+                        broadcast: { ack: true },
+                    },
+                });
+
+                // Handle highscore_update events
+                channel.on(
+                    'broadcast',
+                    { event: 'highscore_update' },
+                    (payload) => {
+                        console.log('[test] highscore_update received', payload);
+                        const eventDiv = document.createElement('div');
+                        eventDiv.innerHTML = `<strong>highscore_update:</strong> ${JSON.stringify(payload, null, 2)}`;
+                        eventsEl.appendChild(eventDiv);
+                    }
+                );
+
+                // Subscribe with status handling
+                channel.subscribe((status, err) => {
+                    if (status === 'SUBSCRIBED') {
+                        statusEl.innerHTML = '✅ Subscribed to real-time updates';
+                        console.info('[test] successfully subscribed');
+                        return;
+                    }
+
+                    statusEl.innerHTML = `⚠️ Status: ${status}`;
+                    console.warn('[test] subscription status:', status);
+                    if (err) {
+                        console.error('[test] subscription error:', err);
+                    }
+                });
+
+                // Test sending a broadcast
+                setTimeout(() => {
+                    console.log('Sending test broadcast...');
+                    channel.send({
+                        type: 'broadcast',
+                        event: 'highscore_update',
+                        payload: {
+                            op: 'INSERT',
+                            table: 'games',
+                            new: { player_name: 'TestUser', score: 999, created_at: new Date().toISOString() },
+                            old: null
+                        }
+                    });
+                }, 2000);
+
+            } catch (error) {
+                statusEl.innerHTML = `❌ Error: ${error.message}`;
+                console.error('testRealtime failed', error);
+            }
+        }
+
+        // Start test when page loads
+        testRealtime();
+    </script>
+</body>
+</html>

@@ -393,7 +393,7 @@ export default function Engine() {
         e.stopPropagation();
         onClick();
       }}
-      className="px-6 md:px-8 py-2 md:py-3 bg-primary text-secondary font-bold text-lg md:text-xl rounded-full hover:scale-105 transition-transform animate-pulse antialiased shadow-lg whitespace-nowrap"
+      className="px-6 md:px-8 py-2 md:py-3 bg-primary text-secondary font-bold text-lg md:text-xl rounded-full hover:bg-red-600 hover:text-white transition-all disabled:opacity-50 antialiased shadow-lg whitespace-nowrap"
     >
       {isGameOver ? "R E S T A R T" : "S T A R T   G A M E"}
     </button>
@@ -423,15 +423,6 @@ export default function Engine() {
               </span>
             )}
           </div>
-          {!hasSavedSuccessfully && (
-            <button
-              onClick={handleManualSave}
-              disabled={isSaving || score === 0}
-              className="px-3 md:px-4 py-1 bg-primary text-secondary text-sm md:text-xl font-bold rounded-md hover:bg-red-600 hover:text-white transition-all disabled:opacity-50 antialiased shadow-sm whitespace-nowrap"
-            >
-              {isSaving ? "SAVING..." : "SAVE SCORE"}
-            </button>
-          )}
         </div>
       </div>
 
@@ -448,6 +439,15 @@ export default function Engine() {
           {(gameOver || !gameStarted) && (
             <div className="bg-background/80 backdrop-blur-sm p-6 md:p-10 rounded-2xl shadow-2xl border border-primary/20 flex flex-col items-center gap-6 animate-in fade-in zoom-in duration-300 mx-4">
               {gameOver && <GameOverMessage />}
+              {gameOver && !hasSavedSuccessfully && (
+                <button
+                  onClick={handleManualSave}
+                  disabled={isSaving || score === 0}
+                  className="px-6 md:px-8 py-2 md:py-3 bg-primary text-secondary font-bold text-lg md:text-xl rounded-full hover:bg-red-600 hover:text-white transition-all disabled:opacity-50 antialiased shadow-lg whitespace-nowrap"
+                >
+                  {isSaving ? "SAVING..." : "SAVE SCORE"}
+                </button>
+              )}
               <StartGameButton onClick={handleStartGame} isGameOver={gameOver} />
             </div>
           )}
