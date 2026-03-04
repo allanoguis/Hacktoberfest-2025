@@ -1,5 +1,5 @@
 "use client";
-import React, { useEffect, useState, useCallback, useMemo } from "react";
+import React, { useEffect, useState, useCallback, useMemo, useRef } from "react";
 import { Badge } from "./ui/badge";
 import { Trophy } from "lucide-react";
 import { getLeaderboard } from "@/lib/api-client";
@@ -24,6 +24,9 @@ export const Leaderboard = () => {
     hasNext: false,
     hasPrev: false
   });
+
+  // Debounce ref for real-time updates
+  const realtimeTimeoutRef = useRef(null);
 
   const fetchLeaderboard = useCallback(async (page = 1, resetData = false) => {
     try {
@@ -61,21 +64,37 @@ export const Leaderboard = () => {
     }
   }, [filters]);
 
-  // Handle real-time leaderboard updates
+  // Handle real-time leaderboard updates with debouncing
   const handleRealtimeUpdate = useCallback((payload) => {
     console.log('🎮 [Leaderboard] Real-time event received:', payload);
     
     // Edge Function payload format: { user_id, score, metadata }
     if (payload && payload.user_id && payload.score) {
       console.log(`🔄 [Leaderboard] High score update detected: ${payload.metadata?.player_name || 'Unknown'} - ${payload.score}`);
-      console.log('📊 [Leaderboard] Current page:', pagination.currentPage);
       
-      // Refresh the current page data when changes occur
-      fetchLeaderboard(pagination.currentPage, false);
+      // Clear existing timeout
+      if (realtimeTimeoutRef.current) {
+        clearTimeout(realtimeTimeoutRef.current);
+      }
+      
+      // Get current page state to avoid race conditions
+      const currentPageAtUpdate = pagination.currentPage;
+      console.log('📊 [Leaderboard] Page at update time:', currentPageAtUpdate);
+      
+      // Debounce the refresh to avoid excessive API calls
+      realtimeTimeoutRef.current = setTimeout(() => {
+        // Check if current page hasn't changed since the update
+        if (pagination.currentPage === currentPageAtUpdate) {
+          console.log('🔄 [Leaderboard] Refreshing current page data (debounced)');
+          fetchLeaderboard(currentPageAtUpdate, false);
+        } else {
+          console.log('⏭️ [Leaderboard] Page changed, skipping refresh to avoid race condition');
+        }
+      }, 500); // 500ms debounce delay
     } else {
       console.log('⚠️ [Leaderboard] Unhandled payload type:', payload);
     }
-  }, [pagination.currentPage, fetchLeaderboard]);
+  }, [fetchLeaderboard]); // Remove pagination.currentPage from dependencies to prevent re-subscriptions
 
   // Set up real-time subscription with proper cleanup
   useEffect(() => {
@@ -99,6 +118,12 @@ export const Leaderboard = () => {
     
     // Cleanup function - called on component unmount
     return () => {
+      // Clear any pending real-time updates
+      if (realtimeTimeoutRef.current) {
+        clearTimeout(realtimeTimeoutRef.current);
+        realtimeTimeoutRef.current = null;
+      }
+      
       if (unsubscribe) {
         console.log('[Leaderboard] Cleaning up real-time subscription');
         unsubscribe();

@@ -1,0 +1,9 @@
+{
+  "name": "broadcast-highscore",
+  "version": "1.0.0",
+  "type": "module",
+  "main": "index.ts",
+  "dependencies": {
+    "@supabase/supabase-js": "^2.97.0"
+  }
+}
