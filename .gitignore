@@ -1,8 +1,13 @@
-.vercel
-lazygit.exe
-client/.env.local
-client/key.json
 # See https://help.github.com/articles/ignoring-files/ for more about ignoring files.
+
+# installers and temporary files
+git-installer.exe
+nodejs-installer.msi
+*.msi
+*.exe
+*.zip
+*.tar.gz
+lazygit.exe
 
 # dependencies
 /node_modules
